@@ -7,7 +7,7 @@ $msg = new \Plasticbrain\FlashMessages\FlashMessages();
 $user = new User();
 if( !$user -> checkIsUserLoggedIn()){
 
-    header('Location:my-account.php');
+    header('Location:login.php');
     exit();
 }
 
