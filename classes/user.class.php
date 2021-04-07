@@ -4,9 +4,13 @@ require_once 'include/FlashMessages.php';
 
 class User extends DbConnect{
 
+
+
+
+
 public function checkIsUserLoggedIn(){
 
-	if( isset($_SESSION['logged'])){
+	if( isset($_SESSION['logged_in'])){
 		return true;
 	} else {
 		return false;
@@ -93,13 +97,6 @@ $query -> execute();
 			$msg = new \Plasticbrain\FlashMessages\FlashMessages();
 $msg->success('Registration is finished.Please login.');
 
-
-
-
-
-
-
-
 } else {
 			$msg = new \Plasticbrain\FlashMessages\FlashMessages();
 $msg->error('Email address is already taken.');
@@ -123,7 +120,81 @@ $msg->error('Please , fill all fields in registration form.');
 
 }// userRegistration
 
+private function checkIsLoginFormEmpty($email , $password ){
+if( !empty($email) && !empty($password )){
 
+	return true;
+} else {
+	return false;
+}
+
+
+}// checkIsLoginFormEmpty
+
+public function userLogin($email , $password ){
+
+if( $this -> checkIsEmailValid($email)){
+if( $this -> checkIsLoginFormEmpty($email , $password)){
+$active = 1 ;
+$banned = 0 ;
+$sql = 'select * from users  where email = :email and active = :active and banned = :banned     limit  1 ';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindParam( ':email' , $email );
+$query -> bindParam( ':active' , $active );
+$query -> bindParam( ':banned' , $banned );
+
+$query -> execute();
+$results = $query -> fetchAll();
+if( count($results) > 0 ){
+foreach($results as $result ){
+
+$hashed_password = $result['password'];
+
+if( password_verify($password, $hashed_password)){
+$_SESSION['logged_in'] = 1 ;
+$_SESSION['user_id'] = $result['id'];
+$_SESSION['first_name'] = $result['first_name'];
+$_SESSION['last_name'] = $result['last_name'];
+$_SESSION['state'] = $result['state'];
+$_SESSION['city'] = $result['city'];
+$_SESSION['postal_code'] = $result['postal_code'];
+$_SESSION['address'] = $result['address'];
+$_SESSION['phone_number'] = $result['phone_number'];
+$_SESSION['banned'] = $result['banned'];
+$_SESSION['active'] = $result['active'];
+$_SESSION['created_at'] = $result['created_at'];
+$_SESSION['is_admin'] = $result['is_admin'];
+
+header('Location:my-account.php');
+
+exit();
+
+
+
+
+} else {
+	$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Wrong email or password . Please try again.');
+}// password_verify
+
+}// endforeach
+
+} else {
+	$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Wrong email or password . Please try again.');
+}
+} else {
+	$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Please , fill all fields in form..');
+}// checkIsLoginFormEmpty
+
+} else {
+	$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Please , enter valid email address.');
+}// checkIsEmailValid
+
+
+}// userLogin
 
 
 

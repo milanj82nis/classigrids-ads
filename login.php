@@ -1,8 +1,10 @@
+<?php ob_start();?>
 <?php require_once 'include/db.inc.php' ?>
 <?php require_once 'include/class_autoloader.inc.php' ?>
 <?php require_once 'include/config.inc.php' ?>
 <?php require_once 'include/FlashMessages.php'; 
 $msg = new \Plasticbrain\FlashMessages\FlashMessages();
+
 $user = new User();
 if( $user -> checkIsUserLoggedIn()){
 
@@ -147,7 +149,6 @@ if( $user -> checkIsUserLoggedIn()){
       </p>
     <![endif]-->
 
-<?php require_once 'partials/__preloader.php' ?>
 
 <?php require_once 'partials/__header.php' ?>
 
@@ -155,7 +156,7 @@ if( $user -> checkIsUserLoggedIn()){
 
 
 <div class="wrapper rounded bg-white">
-    <div class="h3">User registration</div>
+    <div class="h3">User login</div>
     <div class="form">
 
 <?php
@@ -163,22 +164,15 @@ try {
 
    
 
-if( isset($_POST['userRegistration'])){
+if( isset($_POST['userLogin'])){
 
-$first_name = trim(htmlspecialchars($_POST['first_name']));
-$last_name = trim(htmlspecialchars($_POST['last_name']));
-$state = trim(htmlspecialchars($_POST['state']));
-$city = trim(htmlspecialchars($_POST['city']));
-$address = trim(htmlspecialchars($_POST['address']));
-$postal_code = trim(htmlspecialchars($_POST['postal_code']));
+
 $password = trim($_POST['password']);
-$password_confirmation = trim($_POST['password_confirmation']);
 $email = trim(htmlspecialchars($_POST['email']));
-$phone_number = trim(htmlspecialchars($_POST['phone_number']));
 
 $user = new User();
 
-$user -> userRegistration($first_name , $last_name , $state , $city , $address , $postal_code , $password , $password_confirmation , $email , $phone_number );
+$user -> userLogin($email , $password );
 
 
 
@@ -192,52 +186,23 @@ $user -> userRegistration($first_name , $last_name , $state , $city , $address ,
  $msg -> display();
 ?>
          <form action="" method="post">
-        <div class="row">
-           
-        <div class="col-md-6 mt-md-0 mt-3"> <label>First Name</label> 
-                <input type="text" class="form-control" required="required" name="first_name"> 
-        </div>
-        <div class="col-md-6 mt-md-0 mt-3"> <label>Last Name</label> 
-                <input type="text" class="form-control" required="required" name="last_name"> 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mt-md-0 mt-3"> <label>State</label> 
-                <input type="text" class="form-control" required="required" name="state"> 
-            </div>
-            <div class="col-md-6 mt-md-0 mt-3"> <label>City</label> 
-                <input type="text" class="form-control" required="required" name="city" > 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mt-md-0 mt-3"> <label>Postal code</label> 
-                <input type="text" class="form-control" required="required" name="postal_code"> 
-            </div>
-            <div class="col-md-6 mt-md-0 mt-3"> <label>Address</label> 
-                <input type="text" class="form-control" required="required" name="address" > 
-            </div>
-        </div>
-
+     
         
 
         <div class="row">
-            <div class="col-md-6 mt-md-0 mt-3"> <label>Email</label> 
+            <div class="col-md-12 mt-md-0 mt-3"> <label>Email</label> 
                 <input type="email" class="form-control" required="required" name="email"> 
             </div>
-            <div class="col-md-6 mt-md-0 mt-3"> <label>Phone Number</label> 
-                <input type="tel" class="form-control" required="required" name="phone_number"> 
-            </div>
+            
         </div>
 
-                <div class="row">
-            <div class="col-md-6 mt-md-0 mt-3"> <label>Password</label> 
+        <div class="row">
+            <div class="col-md-12 mt-md-0 mt-3"> <label>Password</label> 
                 <input type="password" class="form-control" required="required" name="password"> 
             </div>
-            <div class="col-md-6 mt-md-0 mt-3"> <label>Repeat password</label> 
-                <input type="password" class="form-control" required="required" name="password_confirmation"> 
-            </div>
+            
         </div>
-        <button class="btn btn-primary mt-3" type="submit" name="userRegistration">Register</button>
+        <button class="btn btn-primary mt-3" type="submit" name="userLogin">Login</button>
         
 
         </form>
@@ -296,3 +261,4 @@ $user -> userRegistration($first_name , $last_name , $state , $city , $address ,
 </body>
 
 </html>
+<?php ob_end_flush(); ?>
