@@ -76,7 +76,7 @@ if( $user -> checkIsUserLoggedIn()){
 
                             </div>
                             <div class="button header-button">
-                                <a href="javascript:void(0)" class="btn">Post an Ad</a>
+                                <a href="post-an-ad.php" class="btn">Post an Ad</a>
                             </div>
                         </nav> <!-- navbar -->
                     </div>

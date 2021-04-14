@@ -165,12 +165,29 @@ try {
 
 if( isset($_POST['postAnAd'])){
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
+
+$ad = new Ad();
+$title = $_POST['title'];
+$price = $_POST['price'];
+$price_type_id = $_POST['price_type_id'];
+$currency_id = $_POST['currency_id'];
+$payment_id = $_POST['payment_id'];
+$images = $_FILES['images'];
+$youtube_link = $_POST['youtube_link'];
+$description = $_POST['description'];
+$condition_id = $_POST['condition_id'];
+$sub_category_id = $_POST['sub_category_id'];
+$amount = $_POST['amount'];
+$sending_id = $_POST['sending_id'];
+$free_delivery = isset($_POST['free_delivery']) ? 1 : 0 ;
+
+$ad -> postAnAd($title , $price , $price_type_id , $currency_id , $payment_id , $images , 
+$youtube_link , $description , $condition_id , $sub_category_id , $amount , $sending_id , $free_delivery );
 
 
-}// userRegistration
+
+
+}// postAnAd
 
 } catch( PDOException $e ){
     echo $e -> getMessage();
@@ -179,17 +196,17 @@ echo '</pre>';
 
  $msg -> display();
 ?>
-         <form action="" method="post">
+         <form action="" method="post" enctype="multipart/form-data">
         <div class="row">
            
         <div class="col-md-12 mt-md-0 mt-3"> <label>Title</label> 
-                <input type="text" class="form-control" required="required" name="title"> 
+                <input type="text" class="form-control" name="title"> 
         </div>
 
         </div>
         <div class="row">
             <div class="col-md-6 mt-md-0 mt-3"> <label>Price</label> 
-                <input type="text" class="form-control" required="required" name="price"> 
+                <input type="text" class="form-control" name="price"> 
             </div>
             <div class="col-md-6 mt-md-0 mt-3"> <label>Price type</label> 
                 <select name="price_type_id" class="form-control">
@@ -249,8 +266,30 @@ foreach ( $ad -> getAllCurrencies() as $currency ){
  ?>
                 </select>            
             </div>
-            <div class="col-md-6 mt-md-0 mt-3"> <label>Featured image</label> 
-                <input type="file" class="form-control" required="required" name="featured_image" > 
+            <div class="col-md-6 mt-md-0 mt-3"> <label>Payment method</label> 
+              <select name="payment_id" class="form-control">
+                    <option >Select payment</option>
+                    <?php 
+
+
+try {
+
+
+foreach ( $ad -> getAllPaymentMethods() as $payment_method ){
+?>
+
+<option value="<?php echo $payment_method['id'];  ?>"><?php echo $payment_method['title'];  ?></option>
+<?php
+
+}
+
+
+} catch ( PDOException $e ){
+    echo $e -> getMessage();
+}
+
+ ?>
+                </select>  
             </div>
         </div>
 
@@ -258,16 +297,16 @@ foreach ( $ad -> getAllCurrencies() as $currency ){
 
         <div class="row">
             <div class="col-md-6 mt-md-0 mt-3"> <label>Images</label> 
-                <input type="file" class="form-control" required="required" name="images[]" multiple="multiple"> 
+                <input type="file" class="form-control" name="images[]" multiple="multiple"> 
             </div>
             <div class="col-md-6 mt-md-0 mt-3"> <label>Youtube link</label> 
-                <input type="text" class="form-control" required="required" name="youtube_link"> 
+                <input type="text" class="form-control" name="youtube_link"> 
             </div>
         </div>
 
                 <div class="row">
             <div class="col-md-12 mt-md-0 mt-3"> <label>Description</label> 
-            	<textarea class="form-control" required="required" name="description" rows="5"></textarea>
+            	<textarea class="form-control" name="description" rows="5"></textarea>
                
             </div>
         </div>
@@ -331,7 +370,7 @@ foreach ( $ad -> getAllSubCategories() as $sub_category ){
 
         <div class="row">
             <div class="col-md-6 mt-md-0 mt-3"> <label>Amount</label> 
-                <input type="text" class="form-control" required="required" name="amount"> 
+                <input type="text" class="form-control" name="amount"> 
            
             </div>
 <div class="col-md-6 mt-md-0 mt-3"><label>Sending method</label>
@@ -373,33 +412,7 @@ foreach ( $ad -> getAllSendingMethods() as $sending_method ){
                 <input type="checkbox" class="form-check-input"  name="free_delivery"> 
            
             </div>
-<div class="col-md-6 mt-md-0 mt-3"><label>Payment method</label>
 
-<select name="payment_id" class="form-control">
-                	<option >Select payment</option>
-                	<?php 
-
-
-try {
-
-
-foreach ( $ad -> getAllPaymentMethods() as $payment_method ){
-?>
-
-<option value="<?php echo $payment_method['id'];  ?>"><?php echo $payment_method['title'];  ?></option>
-<?php
-
-}
-
-
-} catch ( PDOException $e ){
-	echo $e -> getMessage();
-}
-
- ?>
-                </select>  
-
-</div>
 
 
 
