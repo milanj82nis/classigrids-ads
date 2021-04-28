@@ -192,12 +192,6 @@ public function getAllSendingMethods(){
 }// getAllSendingMethods
 
 
-public function getAllAds(){	
-	$sql = 'select * from ads order by title asc';
-	$query = $this -> connect() -> query ($sql);
-	$ads = $query -> fetchAll();
-	return $ads;
 
-}// getAllSendingMethods
 
 }//Ad
