@@ -192,6 +192,70 @@ public function getAllSendingMethods(){
 }// getAllSendingMethods
 
 
+public function getAllAds(){	
+	$sql = 'select * from ads order by title asc';
+	$query = $this -> connect() -> query ($sql);
+	$ads = $query -> fetchAll();
+	return $ads;
+
+}// getAllSendingMethods
+
+
+public function filterAdsBySendingMethod($sending_id){
+
+	$sql = 'select * from ads where  sending_id = ? order by title asc';
+	$query = $this -> connect() -> prepare ($sql);
+	$query -> execute([$sending_id]);
+	$ads = $query -> fetchAll();
+	return $ads;
+
+
+}// filterAdsBySendingMethod
+
+public function filterAdsBySubCategory($sub_category_id){
+	
+	$sql = 'select * from ads where  sub_category_id = ? order by title asc';
+	$query = $this -> connect() -> prepare ($sql);
+	$query -> execute([$sub_category_id]);
+	$ads = $query -> fetchAll();
+	return $ads;
+
+
+}// filterAdsBySendingMethod
+
+public function filterAdsByPaymentMethod($payment_id){
+	
+	$sql = 'select * from ads where  payment_id = ? order by title asc';
+	$query = $this -> connect() -> prepare ($sql);
+	$query -> execute([$payment_id]);
+	$ads = $query -> fetchAll();
+	return $ads;
+
+
+}// filterAdsBySendingMethod
+
+public function filterAdsByCondition($condition_id){
+	
+	$sql = 'select * from ads where  condition_id = ? order by title asc';
+	$query = $this -> connect() -> prepare ($sql);
+	$query -> execute([$condition_id]);
+	$ads = $query -> fetchAll();
+	return $ads;
+
+
+
+}// filterAdsBySendingMethod
+
+public function getCurrencyDetails($currency_id){
+
+	$sql = 'select * from currencies where  id = ? order by title asc';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([$currency_id]);
+	$currency = $query -> fetch();
+	return $currency;
+}
+
+
 
 
 }//Ad
