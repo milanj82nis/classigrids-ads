@@ -193,54 +193,157 @@ public function getAllSendingMethods(){
 
 
 public function getAllAds(){	
-	$sql = 'select * from ads order by title asc';
-	$query = $this -> connect() -> query ($sql);
-	$ads = $query -> fetchAll();
-	return $ads;
+
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1 ; 
+$perPage = isset($_GET['per-page'])&& $_GET['per-page'] <= 6 ? (int)$_GET['per-page'] : 6 ;
+
+$start = ( $page > 1 ) ? ($page * $perPage ) - $perPage : 0 ;
+
+$sql = 'select * from ads order by title desc LIMIT :start , :perPage';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindParam( ':start' , $start , PDO::PARAM_INT);
+$query -> bindParam( ':perPage' , $perPage , PDO::PARAM_INT);
+$query -> execute();
+$ads = $query -> fetchAll(); 
+
+$sql = 'select * from ads ';
+$query = $this -> connect() -> query($sql);
+$ads_count = $query ->  fetchAll();
+$allAds = count($ads_count);
+$pages = ceil( $allAds / $perPage);
+
+return array('pages' => $pages , 'ads' => $ads , 'per-page' => $perPage );
+
 
 }// getAllSendingMethods
 
 
 public function filterAdsBySendingMethod($sending_id){
 
-	$sql = 'select * from ads where  sending_id = ? order by title asc';
-	$query = $this -> connect() -> prepare ($sql);
-	$query -> execute([$sending_id]);
-	$ads = $query -> fetchAll();
-	return $ads;
+
+
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1 ; 
+$perPage = isset($_GET['per-page'])&& $_GET['per-page'] <= 6 ? (int)$_GET['per-page'] : 6 ;
+
+$start = ( $page > 1 ) ? ($page * $perPage ) - $perPage : 0 ;
+
+$sql = 'select * from ads  where  sending_id = :sending_id order by title desc LIMIT :start , :perPage';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindParam( ':sending_id' , $sending_id , PDO::PARAM_INT);
+$query -> bindParam( ':start' , $start , PDO::PARAM_INT);
+$query -> bindParam( ':perPage' , $perPage , PDO::PARAM_INT);
+$query -> execute();
+$ads = $query -> fetchAll(); 
+
+$sql = 'select * from ads where  sending_id = ?  ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([$sending_id]);
+
+$ads_count = $query ->  fetchAll();
+$allAds = count($ads_count);
+$pages = ceil( $allAds / $perPage);
+
+return array('pages' => $pages , 'ads' => $ads , 'per-page' => $perPage );
+
 
 
 }// filterAdsBySendingMethod
 
 public function filterAdsBySubCategory($sub_category_id){
 	
-	$sql = 'select * from ads where  sub_category_id = ? order by title asc';
-	$query = $this -> connect() -> prepare ($sql);
-	$query -> execute([$sub_category_id]);
-	$ads = $query -> fetchAll();
-	return $ads;
+
+	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1 ; 
+$perPage = isset($_GET['per-page'])&& $_GET['per-page'] <= 6 ? (int)$_GET['per-page'] : 6 ;
+
+$start = ( $page > 1 ) ? ($page * $perPage ) - $perPage : 0 ;
+
+$sql = 'select * from ads  where  sub_category_id = :sub_category_id order by title desc LIMIT :start , :perPage';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindParam( ':sub_category_id' , $sub_category_id , PDO::PARAM_INT);
+$query -> bindParam( ':start' , $start , PDO::PARAM_INT);
+$query -> bindParam( ':perPage' , $perPage , PDO::PARAM_INT);
+$query -> execute();
+$ads = $query -> fetchAll(); 
+
+$sql = 'select * from ads where  sub_category_id = ?  ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([$sub_category_id]);
+
+$ads_count = $query ->  fetchAll();
+$allAds = count($ads_count);
+$pages = ceil( $allAds / $perPage);
+
+return array('pages' => $pages , 'ads' => $ads , 'per-page' => $perPage );
+
+
+
 
 
 }// filterAdsBySendingMethod
 
 public function filterAdsByPaymentMethod($payment_id){
-	
-	$sql = 'select * from ads where  payment_id = ? order by title asc';
-	$query = $this -> connect() -> prepare ($sql);
-	$query -> execute([$payment_id]);
-	$ads = $query -> fetchAll();
-	return $ads;
+		
+
+	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1 ; 
+$perPage = isset($_GET['per-page'])&& $_GET['per-page'] <= 6 ? (int)$_GET['per-page'] : 6 ;
+
+$start = ( $page > 1 ) ? ($page * $perPage ) - $perPage : 0 ;
+
+$sql = 'select * from ads  where  payment_id = :payment_id order by title desc LIMIT :start , :perPage';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindParam( ':payment_id' , $payment_id , PDO::PARAM_INT);
+$query -> bindParam( ':start' , $start , PDO::PARAM_INT);
+$query -> bindParam( ':perPage' , $perPage , PDO::PARAM_INT);
+$query -> execute();
+$ads = $query -> fetchAll(); 
+
+$sql = 'select * from ads where  payment_id = ?  ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([$payment_id]);
+
+$ads_count = $query ->  fetchAll();
+$allAds = count($ads_count);
+$pages = ceil( $allAds / $perPage);
+
+return array('pages' => $pages , 'ads' => $ads , 'per-page' => $perPage );
+
+
+
+
 
 
 }// filterAdsBySendingMethod
 
 public function filterAdsByCondition($condition_id){
 	
-	$sql = 'select * from ads where  condition_id = ? order by title asc';
-	$query = $this -> connect() -> prepare ($sql);
-	$query -> execute([$condition_id]);
-	$ads = $query -> fetchAll();
-	return $ads;
+		$page = isset($_GET['page']) ? (int)$_GET['page'] : 1 ; 
+$perPage = isset($_GET['per-page'])&& $_GET['per-page'] <= 6 ? (int)$_GET['per-page'] : 6 ;
+
+$start = ( $page > 1 ) ? ($page * $perPage ) - $perPage : 0 ;
+
+$sql = 'select * from ads  where  condition_id = :condition_id order by title desc LIMIT :start , :perPage';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindParam( ':condition_id' , $condition_id , PDO::PARAM_INT);
+$query -> bindParam( ':start' , $start , PDO::PARAM_INT);
+$query -> bindParam( ':perPage' , $perPage , PDO::PARAM_INT);
+$query -> execute();
+$ads = $query -> fetchAll(); 
+
+$sql = 'select * from ads where  condition_id = ?  ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([$condition_id]);
+
+$ads_count = $query ->  fetchAll();
+$allAds = count($ads_count);
+$pages = ceil( $allAds / $perPage);
+
+return array('pages' => $pages , 'ads' => $ads , 'per-page' => $perPage );
+
+
+
+
 
 
 

@@ -305,179 +305,15 @@ $condition_id = isset($_GET['condition_id']) ? $_GET['condition_id'] : null;
 if( $sending_id){
 
 
-$ads -> filterAdsBySendingMethod($sending_id);
+$ads -> filterAdsBySendingMethod($sending_id)['ads'];
 
-if( count($ads -> filterAdsBySendingMethod($sending_id)  )== 0 ){
+if( count($ads -> filterAdsBySendingMethod($sending_id)['ads']  )== 0 ){
 
     echo '<br><h4>There is no ads for this sending method.</h4>';
 } else {
-foreach( $ads -> filterAdsBySendingMethod($sending_id) as $ad ){
-?>
 
 
-
-                <div class="col-md-4">
-                    <div class="product py-4"><?php
-if( $ad['free_delivery'] == 1 ){
-?>
- <span class="off bg-success">Free delivery
- </span>
-    <?php
-}
-
-?>
-                        <div class="text-center"> 
-                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
-                             </div>
-                        <div class="about text-center">
-                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
-                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
-                            </span>
-                        </div>
-                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
-                              <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
-                        </div>
-                    </div>
-                </div>
-<?php
-
-}// endforeach
-
-}
-
-
-} else if ($sub_category_id)  {
-
-$ads -> filterAdsBySubCategory($sub_category_id);
-
-if( count($ads -> filterAdsBySubCategory($sub_category_id)  )== 0 ){
-
-    echo '<br><h4>There is no ads in this category.</h4>';
-
-} else {
-
-foreach( $ads -> filterAdsBySubCategory($sub_category_id) as $ad ){
-?>
-                  <div class="col-md-4">
-                    <div class="product py-4"><?php
-if( $ad['free_delivery'] == 1 ){
-?>
- <span class="off bg-success">Free delivery
- </span>
-    <?php
-}
-
-?>
-                        <div class="text-center"> 
-                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
-                             </div>
-                        <div class="about text-center">
-                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
-                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
-                            </span>
-                        </div>
-                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
-                              <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
-                        </div>
-                    </div>
-                </div>
-<?php
-
-}// endforeach
-
-}
-
-} else if ($payment_id)  {
-
-
-$ads -> filterAdsByPaymentMethod($payment_id);
-
-if( count($ads -> filterAdsByPaymentMethod($payment_id)  )== 0 ){
-
-    echo '<br><h4>There is no ads in this payment method.</h4>';
-
-} else {
-    
-foreach( $ads -> filterAdsByPaymentMethod($payment_id) as $ad ){
-?>
-     <div class="col-md-4">
-                    <div class="product py-4"><?php
-if( $ad['free_delivery'] == 1 ){
-?>
- <span class="off bg-success">Free delivery
- </span>
-    <?php
-}
-
-?>
-                        <div class="text-center"> 
-                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
-                             </div>
-                        <div class="about text-center">
-                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
-                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
-                            </span>
-                        </div>
-                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
-                              <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
-                        </div>
-                    </div>
-                </div>
-<?php
-
-}// endforeach
-
-}
-
-} else if ($condition_id)  {
-
-
-$ads -> filterAdsByCondition($condition_id);
-
-if( count($ads -> filterAdsByCondition($condition_id)  )== 0 ){
-
-    echo '<br><h4>There is no ads in this condition.</h4>';
-
-} else {
-    
-foreach( $ads -> getAllAds() as $ad ){
-?>
-     <div class="col-md-4">
-                    <div class="product py-4"><?php
-if( $ad['free_delivery'] == 1 ){
-?>
- <span class="off bg-success">Free delivery
- </span>
-    <?php
-}
-
-?>
-                        <div class="text-center"> 
-                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
-                             </div>
-                        <div class="about text-center">
-                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
-                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
-                            </span>
-                        </div>
-                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
-                        </div>
-                    </div>
-<?php
-
-}// endforeach
-
-}
-} else   {
-
-
-
-foreach( $ads -> getAllAds() as $ad ){
+foreach( $ads -> filterAdsBySendingMethod($sending_id)['ads'] as $ad ){
 ?>
 
                    <div class="col-md-4">
@@ -498,7 +334,7 @@ if( $ad['free_delivery'] == 1 ){
                                 <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
                             </span>
                         </div>
-                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
+                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
                             <div class="add"> <span class="product_fav">
                                 <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
                         </div>
@@ -507,6 +343,340 @@ if( $ad['free_delivery'] == 1 ){
 <?php
 
 }// endforeach
+
+if( count($ads ->filterAdsBySendingMethod($sending_id)['ads']) > 0 ){
+    $pages = $ads -> filterAdsBySendingMethod($sending_id)['pages'];
+?>
+<nav>
+    <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success">
+<?php 
+
+for( $x = 1 ; $x <= $pages; $x++){
+
+    $perPage = $ads -> filterAdsBySendingMethod($sending_id)['per-page'];
+
+?>
+<li class="page-item"><a class="page-link" data-abc="true" href="?sending_id=<?php echo $sending_id;?>&page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a></li>
+
+
+<?php
+}// end for
+
+
+
+ ?>        
+
+
+    </ul>
+</nav>
+
+
+<?php
+
+
+}
+
+}
+
+
+} else if ($sub_category_id)  {
+
+
+$ads -> filterAdsBySubCategory($sub_category_id)['ads'];
+
+if( count($ads -> filterAdsBySubCategory($sub_category_id)['ads']  )== 0 ){
+
+    echo '<br><h4>There is no ads in this category.</h4>';
+} else {
+
+
+foreach( $ads -> filterAdsBySubCategory($sub_category_id)['ads'] as $ad ){
+?>
+
+                   <div class="col-md-4">
+                    <div class="product py-4"><?php
+if( $ad['free_delivery'] == 1 ){
+?>
+ <span class="off bg-success">Free delivery
+ </span>
+    <?php
+}
+
+?>
+                        <div class="text-center"> 
+                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
+                             </div>
+                        <div class="about text-center">
+                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
+                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
+                            </span>
+                        </div>
+                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
+                            <div class="add"> <span class="product_fav">
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                        </div>
+                    </div>
+                </div>
+<?php
+
+}// endforeach
+
+if( count($ads ->filterAdsBySubCategory($sub_category_id)['ads']) > 0 ){
+    $pages = $ads -> filterAdsBySubCategory($sub_category_id)['pages'];
+?>
+<nav>
+    <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success">
+<?php 
+
+for( $x = 1 ; $x <= $pages; $x++){
+
+    $perPage = $ads -> filterAdsBySubCategory($sub_category_id)['per-page'];
+
+?>
+<li class="page-item"><a class="page-link" data-abc="true" href="?sub_category_id=<?php echo $sub_category_id;?>&page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a></li>
+
+
+<?php
+}// end for
+
+
+
+ ?>        
+
+
+    </ul>
+</nav>
+
+
+<?php
+
+
+}
+
+}
+
+} else if ($payment_id)  {
+
+
+$ads -> filterAdsByPaymentMethod($payment_id)['ads'];
+
+if( count($ads -> filterAdsByPaymentMethod($payment_id)['ads']  )== 0 ){
+
+    echo '<br><h4>There is no ads for this payment method.</h4>';
+} else {
+
+
+foreach( $ads -> filterAdsByPaymentMethod($payment_id)['ads'] as $ad ){
+?>
+
+                   <div class="col-md-4">
+                    <div class="product py-4"><?php
+if( $ad['free_delivery'] == 1 ){
+?>
+ <span class="off bg-success">Free delivery
+ </span>
+    <?php
+}
+
+?>
+                        <div class="text-center"> 
+                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
+                             </div>
+                        <div class="about text-center">
+                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
+                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
+                            </span>
+                        </div>
+                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
+                            <div class="add"> <span class="product_fav">
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                        </div>
+                    </div>
+                </div>
+<?php
+
+}// endforeach
+
+if( count($ads ->filterAdsByPaymentMethod($payment_id)['ads']) > 0 ){
+    $pages = $ads -> filterAdsByPaymentMethod($payment_id)['pages'];
+?>
+<nav>
+    <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success">
+<?php 
+
+for( $x = 1 ; $x <= $pages; $x++){
+
+    $perPage = $ads -> filterAdsByPaymentMethod($payment_id)['per-page'];
+
+?>
+<li class="page-item"><a class="page-link" data-abc="true" href="?payment_id=<?php echo $payment_id;?>&page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a></li>
+
+
+<?php
+}// end for
+
+
+
+ ?>        
+
+
+    </ul>
+</nav>
+
+
+<?php
+
+
+}
+
+}
+
+} else if ($condition_id)  {
+
+$ads -> filterAdsByCondition($condition_id)['ads'];
+
+if( count($ads -> filterAdsByCondition($condition_id)['ads']  )== 0 ){
+
+    echo '<br><h4>There is no ads for this condition.</h4>';
+} else {
+
+
+foreach( $ads -> filterAdsByCondition($condition_id)['ads'] as $ad ){
+?>
+
+                   <div class="col-md-4">
+                    <div class="product py-4"><?php
+if( $ad['free_delivery'] == 1 ){
+?>
+ <span class="off bg-success">Free delivery
+ </span>
+    <?php
+}
+
+?>
+                        <div class="text-center"> 
+                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
+                             </div>
+                        <div class="about text-center">
+                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
+                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
+                            </span>
+                        </div>
+                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
+                            <div class="add"> <span class="product_fav">
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                        </div>
+                    </div>
+                </div>
+<?php
+
+}// endforeach
+
+if( count($ads ->filterAdsByCondition($condition_id)['ads']) > 0 ){
+    $pages = $ads -> filterAdsByCondition($condition_id)['pages'];
+?>
+<nav>
+    <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success">
+<?php 
+
+for( $x = 1 ; $x <= $pages; $x++){
+
+    $perPage = $ads -> ffilterAdsByCondition($condition_id)['per-page'];
+
+?>
+<li class="page-item"><a class="page-link" data-abc="true" href="?condition_id=<?php echo $condition_id;?>&page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a></li>
+
+
+<?php
+}// end for
+
+
+
+ ?>        
+
+
+    </ul>
+</nav>
+
+
+<?php
+
+
+}
+
+}
+
+} else   {
+
+
+
+
+
+foreach( $ads -> getAllAds()['ads'] as $ad ){
+?>
+
+                   <div class="col-md-4">
+                    <div class="product py-4"><?php
+if( $ad['free_delivery'] == 1 ){
+?>
+ <span class="off bg-success">Free delivery
+ </span>
+    <?php
+}
+
+?>
+                        <div class="text-center"> 
+                            <img src="uploads/<?php echo current(explode('|' , $ad['images']));  ?>" width="200">
+                             </div>
+                        <div class="about text-center">
+                            <h5><?php echo  substr($ad['title'] , 0 , 20 ) ?></h5> <span><?php echo $ad['price'] ?>
+                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?>
+                            </span>
+                        </div>
+                        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
+                            <div class="add"> <span class="product_fav">
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                        </div>
+                    </div>
+                </div>
+<?php
+
+}// endforeach
+
+if( count($ads -> getAllAds()['ads']) > 0 ){
+    $pages = $ads -> getAllAds()['pages'];
+?>
+<nav>
+    <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success">
+<?php 
+
+for( $x = 1 ; $x <= $pages; $x++){
+
+    $perPage = $ads -> getAllAds()['per-page'];
+
+?>
+<li class="page-item"><a class="page-link" data-abc="true" href="?page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a></li>
+
+
+<?php
+}// end for
+
+
+
+ ?>        
+
+
+    </ul>
+</nav>
+
+
+<?php
+
+
+}
+
+
+
 }
 
 
