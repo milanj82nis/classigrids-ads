@@ -115,6 +115,7 @@ button:active {
     justify-content: center;
     color: #fff
 }</style>
+<link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
 </head>
 
 <body>
@@ -310,7 +311,7 @@ if( count($ads -> filterAdsBySendingMethod($sending_id)  )== 0 ){
 
     echo '<br><h4>There is no ads for this sending method.</h4>';
 } else {
-foreach( $ads -> getAllAds() as $ad ){
+foreach( $ads -> filterAdsBySendingMethod($sending_id) as $ad ){
 ?>
 
 
@@ -334,8 +335,8 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart-o" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-opencart"></i></span> </div>
+                              <div class="add"> <span class="product_fav">
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
                         </div>
                     </div>
                 </div>
@@ -356,7 +357,7 @@ if( count($ads -> filterAdsBySubCategory($sub_category_id)  )== 0 ){
 
 } else {
 
-foreach( $ads -> getAllAds() as $ad ){
+foreach( $ads -> filterAdsBySubCategory($sub_category_id) as $ad ){
 ?>
                   <div class="col-md-4">
                     <div class="product py-4"><?php
@@ -377,8 +378,8 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart-o" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-opencart"></i></span> </div>
+                              <div class="add"> <span class="product_fav">
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
                         </div>
                     </div>
                 </div>
@@ -399,7 +400,7 @@ if( count($ads -> filterAdsByPaymentMethod($payment_id)  )== 0 ){
 
 } else {
     
-foreach( $ads -> getAllAds() as $ad ){
+foreach( $ads -> filterAdsByPaymentMethod($payment_id) as $ad ){
 ?>
      <div class="col-md-4">
                     <div class="product py-4"><?php
@@ -420,8 +421,8 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart-o" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-opencart"></i></span> </div>
+                              <div class="add"> <span class="product_fav">
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
                         </div>
                     </div>
                 </div>
@@ -464,7 +465,7 @@ if( $ad['free_delivery'] == 1 ){
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
                             <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart-o" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-opencart"></i></span> </div>
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
                         </div>
                     </div>
 <?php
@@ -499,7 +500,7 @@ if( $ad['free_delivery'] == 1 ){
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button class="btn btn-primary text-uppercase">View Ad</button>
                             <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart-o" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-opencart"></i></span> </div>
+                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
                         </div>
                     </div>
                 </div>
@@ -542,7 +543,7 @@ if( $ad['free_delivery'] == 1 ){
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
-
+<script type="text/javascript" src="assets/js/all.min.js"></script>
 
 </body>
 
