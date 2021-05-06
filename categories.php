@@ -581,7 +581,7 @@ if( count($ads ->filterAdsByCondition($condition_id)['ads']) > 0 ){
 
 for( $x = 1 ; $x <= $pages; $x++){
 
-    $perPage = $ads -> ffilterAdsByCondition($condition_id)['per-page'];
+    $perPage = $ads -> filterAdsByCondition($condition_id)['per-page'];
 
 ?>
 <li class="page-item"><a class="page-link" data-abc="true" href="?condition_id=<?php echo $condition_id;?>&page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a></li>
