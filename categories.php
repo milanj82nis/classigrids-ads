@@ -157,7 +157,14 @@ foreach ($ads -> getAllSubCategories() as $subCategory ){
 <div class="d-flex justify-content-between mt-2">
         <div class="form-check"> 
             <input class="form-check-input" type="checkbox" value="<?php echo $subCategory['id'] ?>" onChange="this.form.submit()" name="sub_category_id" id="flexCheckChecked" > 
-            <label class="form-check-label" for="flexCheckChecked"> <?php echo $subCategory['title'] ?> </label> </div> <span>28</span>
+            <label class="form-check-label" for="flexCheckChecked"> <?php echo $subCategory['title'] ?> </label> </div> <span>
+
+<?php
+
+echo $ads  -> getAdsCountBySubCategory($subCategory['id']);
+
+?>
+            </span>
                 </div>
 <?php
 }// endForeach
@@ -194,7 +201,14 @@ foreach ($ads -> getAllConditions() as $condition ){
 <div class="d-flex justify-content-between mt-2">
         <div class="form-check"> 
             <input class="form-check-input" type="checkbox"  value="<?php echo $condition['id'] ?>" onChange="this.form.submit()" name="condition_id"  id="flexCheckChecked" > 
-            <label class="form-check-label" for="flexCheckChecked"> <?php echo $condition['title'] ?> </label> </div> <span>28</span>
+            <label class="form-check-label" for="flexCheckChecked"> <?php echo $condition['title'] ?> </label> </div> <span>
+
+<?php 
+
+echo $ads -> getAdsCountByCondition($condition['id']);
+
+?> 
+            </span>
                 </div>
 <?php
 }// endForeach
@@ -229,7 +243,14 @@ foreach ($ads -> getAllPaymentMethods() as $paymentMethod ){
 <div class="d-flex justify-content-between mt-2">
         <div class="form-check"> 
             <input class="form-check-input" type="checkbox"  value="<?php echo $paymentMethod['id'] ?>" onChange="this.form.submit()" name="payment_id"  id="flexCheckChecked" > 
-            <label class="form-check-label" for="flexCheckChecked"> <?php echo $paymentMethod['title'] ?> </label> </div> <span>28</span>
+            <label class="form-check-label" for="flexCheckChecked"> <?php echo $paymentMethod['title'] ?> </label> </div> <span>
+
+<?php 
+
+echo $ads -> getAdsByPaymentMethod($paymentMethod['id']);
+
+?> 
+            </span>
                 </div>
 <?php
 }// endForeach
@@ -264,7 +285,15 @@ foreach ($ads -> getAllSendingMethods() as $sendingMethod ){
 <div class="d-flex justify-content-between mt-2">
         <div class="form-check"> 
             <input class="form-check-input" type="checkbox"  value="<?php echo $sendingMethod['id'] ?>" onChange="this.form.submit()" name="sending_id"  id="flexCheckChecked" > 
-            <label class="form-check-label" for="flexCheckChecked"> <?php echo $sendingMethod['title'] ?> </label> </div> <span>28</span>
+            <label class="form-check-label" for="flexCheckChecked"> <?php echo $sendingMethod['title'] ?> </label> </div> <span>
+
+
+<?php
+ echo $ads -> getAdsBySendingMethod($sendingMethod['id']);
+
+?>
+
+            </span>
                 </div>
 <?php
 }// endForeach
@@ -581,7 +610,7 @@ if( count($ads ->filterAdsByCondition($condition_id)['ads']) > 0 ){
 
 for( $x = 1 ; $x <= $pages; $x++){
 
-    $perPage = $ads -> ffilterAdsByCondition($condition_id)['per-page'];
+    $perPage = $ads -> filterAdsByCondition($condition_id)['per-page'];
 
 ?>
 <li class="page-item"><a class="page-link" data-abc="true" href="?condition_id=<?php echo $condition_id;?>&page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a></li>

@@ -4,6 +4,44 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
+public function getAdsCountBySubCategory($sub_category_id){
+
+	$sql = 'select * from ads where sub_category_id = ? ';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([ $sub_category_id ]);
+	$ads = count($query -> fetchAll());
+	return $ads;
+
+}// getAdsCountBySubCategory
+
+public function getAdsCountByCondition($condition_id){
+
+	$sql = 'select * from ads where condition_id = ? ';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([ $condition_id ]);
+	$ads = count($query -> fetchAll());
+	return $ads;
+
+}// getAdsCountBySubCategory
+public function getAdsByPaymentMethod($payment_id){
+
+	$sql = 'select * from ads where payment_id = ? ';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([ $payment_id ]);
+	$ads = count($query -> fetchAll());
+	return $ads;
+
+}// getAdsCountBySubCategory
+public function getAdsBySendingMethod($sending_id){
+
+	$sql = 'select * from ads where sending_id = ? ';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([ $sending_id ]);
+	$ads = count($query -> fetchAll());
+	return $ads;
+
+}// getAdsCountBySubCategory
+
 
 private function checkIsAdsFormEmpty($title , $price , $price_type_id , $currency_id , $payment_id , $images  , $description , $condition_id , $sub_category_id , $amount , $sending_id  ){
 
