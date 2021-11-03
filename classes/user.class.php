@@ -4,8 +4,62 @@ require_once 'include/FlashMessages.php';
 
 class User extends DbConnect{
 
+private function checkIsChangeAccountFormEmpty($first_name , $last_name , $email , $state , $city , $postal_code , $address , $phone_number ){
+
+if( !empty($first_name) &&  !empty($last_name) &&  !empty($email) &&  !empty($state) &&  !empty($city) &&  !empty($postal_code) &&  !empty($address) &&  !empty($phone_number) &&  !empty($first_name) &&   !empty($phone_number) ){
+	return true;
+} else {
+	return false;
+}
+
+}// checkIsChangeAccountFormEmpty
 
 
+public function changeUserAccount($first_name , $last_name , $email , $state , $city , $postal_code , $address , $phone_number ){
+
+if( $this -> checkIsChangeAccountFormEmpty($first_name , $last_name , $email , $state , $city , $postal_code , $address , $phone_number )){
+if( $this -> checkIsEmailValid($email)){
+if( $this -> checkIsEmailRegistered($email)){
+
+
+$sql = 'update users set first_name = ? ,last_name = ? ,email = ? ,state = ? ,city = ? ,postal_code = ? ,address = ? , phone_number = ? ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([ $first_name , $last_name , $email , $state , $city , $postal_code , $address , $phone_number]);
+
+$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->success('Your account info is updated.');
+
+} else {
+
+$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Email address you entered is already registered.');
+
+}
+
+} else {
+	$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Please , enter valid email address.');
+}
+
+} else {
+$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Please , fill all fields in form.');
+}
+}// changeUserAccount
+
+public function getUserDetailsById($id){
+
+	$sql = 'select * from users where id = ? limit 1 ';
+
+	$query = $this -> connect()-> prepare($sql);
+
+	$query -> execute([ $id ]);
+
+	$userInfo = $query -> fetch();
+
+	return $userInfo;
+
+}// getUserDetailsById
 
 
 public function checkIsUserLoggedIn(){

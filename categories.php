@@ -423,7 +423,10 @@ foreach( $ads -> filterAdsBySubCategory($sub_category_id)['ads'] as $ad ){
 ?>
 
                    <div class="col-md-4">
-                    <div class="product py-4"><?php
+                    <div class="product py-4">
+
+
+                        <?php
 if( $ad['free_delivery'] == 1 ){
 ?>
  <span class="off bg-success">Free delivery
@@ -645,7 +648,10 @@ foreach( $ads -> getAllAds()['ads'] as $ad ){
 ?>
 
                    <div class="col-md-4">
-                    <div class="product py-4"><?php
+                    <div class="product py-4">
+
+
+                        <?php
 if( $ad['free_delivery'] == 1 ){
 ?>
  <span class="off bg-success">Free delivery
