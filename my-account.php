@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php require_once 'include/db.inc.php' ?>
 <?php require_once 'include/class_autoloader.inc.php' ?>
 <?php require_once 'include/config.inc.php' ?>
@@ -168,6 +169,21 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>
+<hr>
+
+<?php 
+
+if( isset($_POST['userLogout'])){
+
+$user = new User();
+$user -> userLogout();
+
+}
+
+ ?>
+            <form action="my-account.php" method="post">
+                <button class="list-group-item list-group-item-action"  name="userLogout">Logout</button>
+            </form>
           </div>
         </div>
         <div class="col-md-9">
@@ -256,21 +272,34 @@ echo '<br>';
             </div>
             <div class="tab-pane fade" id="account-change-password">
               <div class="card-body pb-2">
-<form action="" method="POST">
+<form action="my-account.php" method="POST">
 
-          
+      <?php 
+
+if( isset($_POST['userPasswordReset'])){
+
+$user = new User();
+$password = $_POST['password'];
+$password_confirmation = $_POST['password_confirmation'];
+$user -> userPasswordReset($password , $password_confirmation);
+
+$msg -> display();
+
+}// main isset
+
+       ?>    
 
                 <div class="form-group">
                   <label class="form-label">New password</label>
-                  <input type="password" class="form-control">
+                  <input type="password"  name="password" class="form-control">
                 </div>
 
                 <div class="form-group">
                   <label class="form-label">Repeat new password</label>
-                  <input type="password" class="form-control">
+                  <input type="password" name="password_confirmation" class="form-control">
                 </div>
      <div class="text-right mt-3">
-      <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
+      <button type="submit" name="userPasswordReset" class="btn btn-primary">Save changes</button>&nbsp;
       
     </div>
 </form>
@@ -412,3 +441,4 @@ echo '<br>';
 </body>
 
 </html>
+<?php ob_flush_end(); ?>
