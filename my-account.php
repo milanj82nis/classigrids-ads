@@ -1,4 +1,3 @@
-<?php ob_start(); ?>
 <?php require_once 'include/db.inc.php' ?>
 <?php require_once 'include/class_autoloader.inc.php' ?>
 <?php require_once 'include/config.inc.php' ?>
@@ -169,21 +168,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>
-<hr>
-
-<?php 
-
-if( isset($_POST['userLogout'])){
-
-$user = new User();
-$user -> userLogout();
-
-}
-
- ?>
-            <form action="my-account.php" method="post">
-                <button class="list-group-item list-group-item-action"  name="userLogout">Logout</button>
-            </form>
           </div>
         </div>
         <div class="col-md-9">
@@ -441,4 +425,3 @@ $msg -> display();
 </body>
 
 </html>
-<?php ob_flush_end(); ?>
