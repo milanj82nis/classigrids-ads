@@ -30,25 +30,12 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-link">
-                            <h3>Locations</h3>
+                            <h3>Visitor counter</h3>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Chicago</a></li>
-                                        <li><a href="javascript:void(0)">New York City</a></li>
-                                        <li><a href="javascript:void(0)">San Francisco</a></li>
-                                        <li><a href="javascript:void(0)">Washington</a></li>
-                                        <li><a href="javascript:void(0)">Boston</a></li>
-                                    </ul>
+                                <div class="col-lg-12 col-md-12 col-12">
+   <a href="http://s01.flagcounter.com/more/h17R"><img src="https://s01.flagcounter.com/count2/h17R/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_20/viewers_3/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>                                 
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Los Angeles</a></li>
-                                        <li><a href="javascript:void(0)">Seattle</a></li>
-                                        <li><a href="javascript:void(0)">Las Vegas</a></li>
-                                        <li><a href="javascript:void(0)">San Diego</a></li>
-                                    </ul>
-                                </div>
+
                             </div>
                         </div>
                         <!-- End Single Widget -->

@@ -4,6 +4,50 @@ require_once 'include/FlashMessages.php';
 
 class User extends DbConnect{
 
+public function userLogout(){
+
+session_destroy();
+header('Location:index.php');
+
+}// userLogout
+
+private function checkIsPasswordResetFormEmpty($password , $password_confirmation ){
+if(!empty($password ) && !empty($password_confirmation)){
+		return true;
+}else {
+	return false;;
+}
+
+}// checkIsPasswordFormEmpty
+
+ public function userPasswordReset($password , $password_confirmation){
+	if( $this -> checkIsPasswordResetFormEmpty($password , $password_confirmation)){
+
+if( $this -> checkIsPasswordsSame($password , $password_confirmation)){
+
+$user_id = $_SESSION['user_id'];
+$hashed_password = password_hash( $password , PASSWORD_DEFAULT);
+
+$sql = 'update users set password = ? where id = ? limit 1 ';
+$query = $this -> connect()-> prepare($sql);
+$query -> execute([ $hashed_password , $user_id]);
+
+$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->success('Your passwords is updated.');
+
+
+
+}else {
+	$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Your passwords are not same.');
+}// checkIsPasswordsSame
+}else {
+$msg = new \Plasticbrain\FlashMessages\FlashMessages();
+$msg->error('Please , fill all fields in form.');
+	}// checkIsPasswordResetFormEmpty
+
+}// userPasswordReset
+
 private function checkIsChangeAccountFormEmpty($first_name , $last_name , $email , $state , $city , $postal_code , $address , $phone_number ){
 
 if( !empty($first_name) &&  !empty($last_name) &&  !empty($email) &&  !empty($state) &&  !empty($city) &&  !empty($postal_code) &&  !empty($address) &&  !empty($phone_number) &&  !empty($first_name) &&   !empty($phone_number) ){
