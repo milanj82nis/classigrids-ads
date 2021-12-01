@@ -4,13 +4,6 @@ require_once 'include/FlashMessages.php';
 
 class User extends DbConnect{
 
-public function userLogout(){
-
-session_destroy();
-header('Location:index.php');
-
-}// userLogout
-
 private function checkIsPasswordResetFormEmpty($password , $password_confirmation ){
 if(!empty($password ) && !empty($password_confirmation)){
 		return true;
@@ -30,7 +23,7 @@ $hashed_password = password_hash( $password , PASSWORD_DEFAULT);
 
 $sql = 'update users set password = ? where id = ? limit 1 ';
 $query = $this -> connect()-> prepare($sql);
-$query -> execute([ $hashed_password , $user_id]);
+$query -> execute([ $password , $user_id]);
 
 $msg = new \Plasticbrain\FlashMessages\FlashMessages();
 $msg->success('Your passwords is updated.');
