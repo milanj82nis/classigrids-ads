@@ -444,8 +444,50 @@ public function getCurrencyDetails($currency_id){
 	$query -> execute([$currency_id]);
 	$currency = $query -> fetch();
 	return $currency;
-}
+}//getCurrencyDetails
 
+
+public function viewAd($id){
+
+	$sql = 'select * from ads where id = ? limit 1 ';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([$id]);
+	$ad = $query -> fetch();
+	if( !$ad ){
+		header('Location:index.php');
+		die();
+	}
+	return $ad;
+}// viewAD
+
+public function getPaymentDetails($payment_id){
+
+	$sql = 'select * from payment_methods where  id = ? order by title asc';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([$payment_id]);
+	$payment = $query -> fetch();
+	return $payment;
+}//getPaymentDetails
+
+
+public function getSendingDetails($sending_id){
+
+	$sql = 'select * from sending_methods where  id = ? order by title asc';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([$sending_id]);
+	$sending = $query -> fetch();
+	return $sending;
+}//getSendingDetails
+
+
+public function getConditionDetails($condition_id){
+
+	$sql = 'select * from conditions where  id = ? order by title asc';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([$condition_id]);
+	$conition = $query -> fetch();
+	return $conition;
+}//getConditionDetails
 
 
 
