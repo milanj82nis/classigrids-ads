@@ -616,13 +616,26 @@ $user_id = $ads -> viewAd($ad_id)['user_id'];
             <div class="row">
                 <div class="col-lg-2 order-lg-1 order-2">
                     <ul class="image_list">
-                        <li data-image="https://i.imgur.com/21EYMGD.jpg"><img src="https://i.imgur.com/21EYMGD.jpg" alt=""></li>
-                        <li data-image="https://i.imgur.com/DPWSNWd.jpg"><img src="https://i.imgur.com/DPWSNWd.jpg" alt=""></li>
-                        <li data-image="https://i.imgur.com/HkEiXfn.jpg"><img src="https://i.imgur.com/HkEiXfn.jpg" alt=""></li>
+<?php 
+foreach ( explode('|' , $images) as $image ){
+?>
+
+<li data-image="uploads/<?php echo $image; ?>" id="pop"><img src="uploads/<?php echo $image; ?>" alt="" ></li>
+
+<?php
+}
+
+
+ ?>
+
+
+                        
+                        
                     </ul>
+
                 </div>
                 <div class="col-lg-4 order-lg-2 order-1">
-                    <div class="image_selected"><img src="https://i.imgur.com/qEwct2O.jpg" alt=""></div>
+                    <div class="image_selected"><img src="uploads/<?php echo current(explode('|' , $images));  ?>" alt=""></div>
                 </div>
                 <div class="col-lg-6 order-3">
                     <div class="product_description">
@@ -736,7 +749,6 @@ $user_id = $ads -> viewAd($ad_id)['user_id'];
             }
         });
     </script>
-</body>
 
 </html>
 <?php ob_flush_end(); ?>
