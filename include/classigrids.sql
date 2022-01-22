@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2021 at 10:38 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.1
+-- Generation Time: Jan 22, 2022 at 05:32 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -120,10 +120,11 @@ CREATE TABLE `conditions` (
 --
 
 INSERT INTO `conditions` (`id`, `title`, `skug`) VALUES
-(1, 'Condition 1', 'condition-1'),
-(2, 'Condition 2', 'condition-2'),
-(3, 'Condition 3', 'condition 3'),
-(4, 'Condition 4', 'condition-4');
+(1, 'New', 'new'),
+(2, 'Unused', 'Unused'),
+(3, 'Used', 'used'),
+(4, 'Out of order', 'out-of-order'),
+(5, 'Collectors item', 'collectors-item');
 
 -- --------------------------------------------------------
 
@@ -142,9 +143,9 @@ CREATE TABLE `currencies` (
 --
 
 INSERT INTO `currencies` (`id`, `title`, `slug`) VALUES
-(1, 'Currency 1', 'currency-1'),
-(2, 'Currency 2', 'currency-2'),
-(3, 'Currency 3', 'currency-3');
+(1, 'Euro', 'EUR'),
+(2, 'Australian dollar', 'AUD'),
+(3, 'Serbian dinar', 'RSD');
 
 -- --------------------------------------------------------
 
@@ -163,9 +164,9 @@ CREATE TABLE `payment_methods` (
 --
 
 INSERT INTO `payment_methods` (`id`, `title`, `slug`) VALUES
-(1, 'Payment 1', 'payment-1'),
-(2, 'Payment 2', 'Payment-2'),
-(3, 'Payment 3', 'payment-3');
+(1, 'Cash on delivery', 'cash-on-delivery'),
+(2, 'Before sending', 'Before-sending'),
+(3, 'Personally', 'personally');
 
 -- --------------------------------------------------------
 
@@ -184,8 +185,10 @@ CREATE TABLE `price_types` (
 --
 
 INSERT INTO `price_types` (`id`, `title`, `slug`) VALUES
-(1, 'Price type 1', 'price-type-1'),
-(2, 'Price type 2', 'price-type-2');
+(1, 'Agreement\n', 'Agreement\n'),
+(2, 'Contact', 'contact'),
+(3, 'Call in', 'call-in'),
+(4, 'Free', 'Free');
 
 -- --------------------------------------------------------
 
@@ -345,7 +348,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `conditions`
 --
 ALTER TABLE `conditions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `currencies`
@@ -363,7 +366,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `price_types`
 --
 ALTER TABLE `price_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sending_methods`
