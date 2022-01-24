@@ -4,6 +4,45 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
+
+public function checkIsAdInWishlist($ad_id){
+
+$sql = 'select * from wishlist where ad_id = ? and user_id = ? ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute( [ $ad_id , $_SESSION['user_id']]);
+$ads = $query -> fetchAll();
+if( count($ads ) > 0 ){
+	return true;
+} else {
+	return false;
+}
+
+
+}// checkIsAdInWishlist
+
+
+public function addToWishlist($ad_id){
+
+$sql = 'insert into wishlist ( ad_id , user_id ) values ( ? , ? )';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([ $ad_id , $_SESSION['user_id']]);
+
+}// addToWishlist
+
+
+public function removeFromWishlist($ad_id){
+
+$sql = 'delete from wishlist where ad_id = ? and user_id = ? ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([ $ad_id , $_SESSION['user_id']]);
+
+
+}// removeFromWishlist
+
+
+
+
+
 public function getSubCategoryDetails($id){
 
 $sql = 'select * from subcategories where id = ? ';

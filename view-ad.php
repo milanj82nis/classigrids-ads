@@ -676,14 +676,82 @@ foreach ( explode('|' , $images) as $image ){
                            
                         </div>
                         
-                        <div class="order_info d-flex flex-row">
-                            <form action="#">
-                        </div>
+
                         <div class="row">
-                            
-                            <div class="col-xs-6"> <button type="button" class="btn btn-primary shop-button">Add to Cart</button> <button type="button" class="btn btn-success shop-button">Buy Now</button>
+ <form action="" method="POST">
+     
+     <div class="col-xs-6"> 
+
+<?php 
+try {
+
+
+$users = new User();
+$ads = new Ad();
+if( $users -> checkIsUserLoggedIn()){
+
+if( isset($_POST['addToWishlist'])){
+
+    $ads -> addToWishlist($_GET['id']);
+}
+
+if( isset($_POST['removeFromWishlist'])){
+    $ads -> removeFromWishlist($_GET['id']);
+}
+
+
+?>
+<?php
+
+$ad_id = (int)$_GET['id'];
+if(!$ad_id){
+    header('Location:index.php');
+    die();
+}
+if( $ads -> checkIsAdInWishlist($ad_id )){
+?>
+<button type="submit" class="btn btn-primary shop-button" name="removeFromWishlist">Remove from  Wishlist</button> 
+
+<?php
+
+} else {
+?>
+<button type="submit" class="btn btn-primary shop-button" name="addToWishlist">Add to Wishlist</button> 
+
+<?php
+
+}
+
+
+?>
+
+
+
+
+
+        <button type="submit" class="btn btn-success shop-button" name="buyNow">Buy Now</button>
+<?php
+
+} else {
+
+    echo 'Please login to buy or to add to wishlist.';
+}
+
+
+
+
+} catch ( PDOException $e ) {
+    echo $e -> getMessage();
+}
+
+
+
+ ?>
+
                                 
                             </div>
+ </form>                           
+                            
                         </div>
                     </div>
                 </div>

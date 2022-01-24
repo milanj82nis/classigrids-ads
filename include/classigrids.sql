@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2022 at 05:32 PM
+-- Generation Time: Jan 24, 2022 at 05:00 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -34,7 +34,7 @@ CREATE TABLE `ads` (
   `price_type_id` int(11) NOT NULL,
   `currency_id` int(11) NOT NULL,
   `images` text DEFAULT NULL,
-  `youtube_link` varchar(211) NOT NULL,
+  `youtube_link` text NOT NULL,
   `description` text NOT NULL,
   `condition_id` int(11) NOT NULL,
   `sub_category_id` int(11) DEFAULT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `ads` (
 --
 
 INSERT INTO `ads` (`id`, `title`, `price`, `price_type_id`, `currency_id`, `images`, `youtube_link`, `description`, `condition_id`, `sub_category_id`, `amount`, `sending_id`, `payment_id`, `free_delivery`, `created_at`, `updated_at`, `expires_at`, `user_id`, `slug`) VALUES
-(7, 'Scripsit enim et multis saepe verbis ', '1233.23', 1, 1, '02b2a0800bea5eba02468920ffcf7a9f1619563071.jpg|9decbde481a08e51b65f689e2f5f48c71619563071.jpg|953fe3ff827831a0bf7c0457e8fa09861619563071.jpg|kupatilo 11619563071.jpg', '', '<h1>Vitiosum est enim in dividendo partem in genere numerare.</h1>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est, ut dicis, inquit; <a href=\"http://loripsum.net/\" target=\"_blank\">Ego vero isti, inquam, permitto.</a> <i>Putabam equidem satis, inquit, me dixisse.</i> Sed in rebus apertissimis nimium longi sumus. </p>\r\n\r\n<ul>\r\n	<li>Hi curatione adhibita levantur in dies, valet alter plus cotidie, alter videt.</li>\r\n	<li>Omnes enim iucundum motum, quo sensus hilaretur.</li>\r\n	<li>Hoc est dicere: Non reprehenderem asotos, si non essent asoti.</li>\r\n</ul>\r\n\r\n\r\n<ol>\r\n	<li>Quod si ita est, sequitur id ipsum, quod te velle video, omnes semper beatos esse sapientes.</li>\r\n	<li>Sed haec nihil sane ad rem;</li>\r\n	<li>At quanta conantur! Mundum hunc omnem oppidum esse nostrum! Incendi igitur eos, qui audiunt, vides.</li>\r\n	<li>Hoc loco discipulos quaerere videtur, ut, qui asoti esse velint, philosophi ante fiant.</li>\r\n	<li>Indicant pueri, in quibus ut in speculis natura cernitur.</li>\r\n	<li>Si alia sentit, inquam, alia loquitur, numquam intellegam quid sentiat;</li>\r\n</ol>\r\n\r\n\r\n<pre>Haec ego non possum dicere non esse hominis quamvis et belli\r\net humani, sapientis vero nullo modo, physici praesertim,\r\nquem se ille esse vult, putare ullum esse cuiusquam diem\r\nnatalem.\r\n\r\nLicet hic rursus ea commemores, quae optimis verbis ab\r\nEpicuro de laude amicitiae dicta sunt.\r\n</pre>\r\n\r\n\r\n<p>Duo Reges: constructio interrete. Eademne, quae restincta siti? <b>Restatis igitur vos;</b> Facillimum id quidem est, inquam. Et quod est munus, quod opus sapientiae? <a href=\"http://loripsum.net/\" target=\"_blank\">Prioris generis est docilitas, memoria;</a> </p>\r\n\r\n<blockquote cite=\"http://loripsum.net\">\r\n	Scripsit enim et multis saepe verbis et breviter arteque in eo libro, quem modo nominavi, mortem nihil ad nos pertinere.\r\n</blockquote>\r\n\r\n\r\n<h2>Ut id aliis narrare gestiant?</h2>\r\n\r\n<p>Non potes, nisi retexueris illa. Id mihi magnum videtur. Id est enim, de quo quaerimus. Aperiendum est igitur, quid sit voluptas; <a href=\"http://loripsum.net/\" target=\"_blank\">Nam Pyrrho, Aristo, Erillus iam diu abiecti.</a> </p>\r\n\r\n<dl>\r\n	<dt><dfn>Perge porro;</dfn></dt>\r\n	<dd>Hoc ipsum elegantius poni meliusque potuit.</dd>\r\n	<dt><dfn>At coluit ipse amicitias.</dfn></dt>\r\n	<dd>Idem iste, inquam, de voluptate quid sentit?</dd>\r\n	<dt><dfn>Ut pulsi recurrant?</dfn></dt>\r\n	<dd>Cum ageremus, inquit, vitae beatum et eundem supremum diem, scribebamus haec.</dd>\r\n</dl>\r\n\r\n\r\n', 1, 1, 12, 2, 1, 1, '2021-04-28 00:37:51', '2021-04-28 00:37:51', '2021-05-28 00:37:51', 3, NULL),
+(7, 'Scripsit enim et multis saepe verbis ', '1233.23', 1, 1, '02b2a0800bea5eba02468920ffcf7a9f1619563071.jpg|9decbde481a08e51b65f689e2f5f48c71619563071.jpg|953fe3ff827831a0bf7c0457e8fa09861619563071.jpg|kupatilo 11619563071.jpg', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WKuOZm-n26E\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', '<h1>Vitiosum est enim in dividendo partem in genere numerare.</h1>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est, ut dicis, inquit; <a href=\"http://loripsum.net/\" target=\"_blank\">Ego vero isti, inquam, permitto.</a> <i>Putabam equidem satis, inquit, me dixisse.</i> Sed in rebus apertissimis nimium longi sumus. </p>\r\n\r\n<ul>\r\n	<li>Hi curatione adhibita levantur in dies, valet alter plus cotidie, alter videt.</li>\r\n	<li>Omnes enim iucundum motum, quo sensus hilaretur.</li>\r\n	<li>Hoc est dicere: Non reprehenderem asotos, si non essent asoti.</li>\r\n</ul>\r\n\r\n\r\n<ol>\r\n	<li>Quod si ita est, sequitur id ipsum, quod te velle video, omnes semper beatos esse sapientes.</li>\r\n	<li>Sed haec nihil sane ad rem;</li>\r\n	<li>At quanta conantur! Mundum hunc omnem oppidum esse nostrum! Incendi igitur eos, qui audiunt, vides.</li>\r\n	<li>Hoc loco discipulos quaerere videtur, ut, qui asoti esse velint, philosophi ante fiant.</li>\r\n	<li>Indicant pueri, in quibus ut in speculis natura cernitur.</li>\r\n	<li>Si alia sentit, inquam, alia loquitur, numquam intellegam quid sentiat;</li>\r\n</ol>\r\n\r\n\r\n<pre>Haec ego non possum dicere non esse hominis quamvis et belli\r\net humani, sapientis vero nullo modo, physici praesertim,\r\nquem se ille esse vult, putare ullum esse cuiusquam diem\r\nnatalem.\r\n\r\nLicet hic rursus ea commemores, quae optimis verbis ab\r\nEpicuro de laude amicitiae dicta sunt.\r\n</pre>\r\n\r\n\r\n<p>Duo Reges: constructio interrete. Eademne, quae restincta siti? <b>Restatis igitur vos;</b> Facillimum id quidem est, inquam. Et quod est munus, quod opus sapientiae? <a href=\"http://loripsum.net/\" target=\"_blank\">Prioris generis est docilitas, memoria;</a> </p>\r\n\r\n<blockquote cite=\"http://loripsum.net\">\r\n	Scripsit enim et multis saepe verbis et breviter arteque in eo libro, quem modo nominavi, mortem nihil ad nos pertinere.\r\n</blockquote>\r\n\r\n\r\n<h2>Ut id aliis narrare gestiant?</h2>\r\n\r\n<p>Non potes, nisi retexueris illa. Id mihi magnum videtur. Id est enim, de quo quaerimus. Aperiendum est igitur, quid sit voluptas; <a href=\"http://loripsum.net/\" target=\"_blank\">Nam Pyrrho, Aristo, Erillus iam diu abiecti.</a> </p>\r\n\r\n<dl>\r\n	<dt><dfn>Perge porro;</dfn></dt>\r\n	<dd>Hoc ipsum elegantius poni meliusque potuit.</dd>\r\n	<dt><dfn>At coluit ipse amicitias.</dfn></dt>\r\n	<dd>Idem iste, inquam, de voluptate quid sentit?</dd>\r\n	<dt><dfn>Ut pulsi recurrant?</dfn></dt>\r\n	<dd>Cum ageremus, inquit, vitae beatum et eundem supremum diem, scribebamus haec.</dd>\r\n</dl>\r\n\r\n\r\n', 1, 1, 12, 2, 1, 1, '2021-04-28 00:37:51', '2021-04-28 00:37:51', '2021-05-28 00:37:51', 3, NULL),
 (8, 'A asdA  ltis saepe verbis  2 ', '233.33', 1, 3, '02b2a0800bea5eba02468920ffcf7a9f1619563138.jpg|9decbde481a08e51b65f689e2f5f48c71619563138.jpg|953fe3ff827831a0bf7c0457e8fa09861619563138.jpg|12671798_818011141677953_8612666938672366883_o1619563138.jpg|12671798_818011141677953_8612666938672366883_o1619563138.jpg', '', '<h1>Et ais, si una littera commota sit, fore tota ut labet disciplina.</h1>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. An quod ita callida est, ut optime possit architectari voluptates? Nihilo beatiorem esse Metellum quam Regulum. Duo Reges: constructio interrete. <i>Illi enim inter se dissentiunt.</i> <b>Quo tandem modo?</b> <a href=\"http://loripsum.net/\" target=\"_blank\">Audeo dicere, inquit.</a> Tum Quintus: Est plane, Piso, ut dicis, inquit. <code>Non igitur bene.</code> </p>\r\n\r\n<blockquote cite=\"http://loripsum.net\">\r\n	Huc et illuc, Torquate, vos versetis licet, nihil in hac praeclara epistula scriptum ab Epicuro congruens et conveniens decretis eius reperietis.\r\n</blockquote>\r\n\r\n\r\n<h2>An hoc usque quaque, aliter in vita?</h2>\r\n\r\n<p>Fortemne possumus dicere eundem illum Torquatum? Quorum sine causa fieri nihil putandum est. Quod quidem nobis non saepe contingit. Istam voluptatem, inquit, Epicurus ignorat? </p>\r\n\r\n<dl>\r\n	<dt><dfn>Haec dicuntur inconstantissime.</dfn></dt>\r\n	<dd>Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer.</dd>\r\n	<dt><dfn>Moriatur, inquit.</dfn></dt>\r\n	<dd>Paupertas si malum est, mendicus beatus esse nemo potest, quamvis sit sapiens.</dd>\r\n</dl>\r\n\r\n\r\n<h3>Mihi, inquam, qui te id ipsum rogavi?</h3>\r\n\r\n<p>Respondent extrema primis, media utrisque, omnia omnibus. Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Quid vero? <mark>Quid Zeno?</mark> </p>\r\n\r\n<ul>\r\n	<li>Illud quaero, quid ei, qui in voluptate summum bonum ponat, consentaneum sit dicere.</li>\r\n	<li>Quod idem cum vestri faciant, non satis magnam tribuunt inventoribus gratiam.</li>\r\n	<li>Quamquam id quidem licebit iis existimare, qui legerint.</li>\r\n</ul>\r\n\r\n\r\n<pre>Ut bacillum aliud est inflexum et incurvatum de industria,\r\naliud ita natum, sic ferarum natura non est illa quidem\r\ndepravata mala disciplina, sed natura sua.\r\n\r\nObscura, inquit, quaedam esse confiteor, nec tamen ab illis\r\nita dicuntur de industria, sed inest in rebus ipsis\r\nobscuritas.\r\n</pre>\r\n\r\n\r\n<ol>\r\n	<li>Summum a vobis bonum voluptas dicitur.</li>\r\n	<li>Negat enim summo bono afferre incrementum diem.</li>\r\n	<li>Eiuro, inquit adridens, iniquum, hac quidem de re;</li>\r\n	<li>Quamquam te quidem video minime esse deterritum.</li>\r\n</ol>\r\n\r\n\r\n', 3, 1, 1, 2, 3, 0, '2021-04-28 00:38:58', '2021-04-28 00:38:58', '2021-05-28 00:38:58', 3, NULL),
 (9, 'Quamquam te quidem video minime esse deterritum.', '566.77', 2, 3, '02b2a0800bea5eba02468920ffcf7a9f1619563190.jpg|9decbde481a08e51b65f689e2f5f48c71619563190.jpg|953fe3ff827831a0bf7c0457e8fa09861619563190.jpg|953fe3ff827831a0bf7c0457e8fa09861619563190.jpg', '', '<h1>Et ais, si una littera commota sit, fore tota ut labet disciplina.</h1>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. An quod ita callida est, ut optime possit architectari voluptates? Nihilo beatiorem esse Metellum quam Regulum. Duo Reges: constructio interrete. <i>Illi enim inter se dissentiunt.</i> <b>Quo tandem modo?</b> <a href=\"http://loripsum.net/\" target=\"_blank\">Audeo dicere, inquit.</a> Tum Quintus: Est plane, Piso, ut dicis, inquit. <code>Non igitur bene.</code> </p>\r\n\r\n<blockquote cite=\"http://loripsum.net\">\r\n	Huc et illuc, Torquate, vos versetis licet, nihil in hac praeclara epistula scriptum ab Epicuro congruens et conveniens decretis eius reperietis.\r\n</blockquote>\r\n\r\n\r\n<h2>An hoc usque quaque, aliter in vita?</h2>\r\n\r\n<p>Fortemne possumus dicere eundem illum Torquatum? Quorum sine causa fieri nihil putandum est. Quod quidem nobis non saepe contingit. Istam voluptatem, inquit, Epicurus ignorat? </p>\r\n\r\n<dl>\r\n	<dt><dfn>Haec dicuntur inconstantissime.</dfn></dt>\r\n	<dd>Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer.</dd>\r\n	<dt><dfn>Moriatur, inquit.</dfn></dt>\r\n	<dd>Paupertas si malum est, mendicus beatus esse nemo potest, quamvis sit sapiens.</dd>\r\n</dl>\r\n\r\n\r\n<h3>Mihi, inquam, qui te id ipsum rogavi?</h3>\r\n\r\n<p>Respondent extrema primis, media utrisque, omnia omnibus. Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Quid vero? <mark>Quid Zeno?</mark> </p>\r\n\r\n<ul>\r\n	<li>Illud quaero, quid ei, qui in voluptate summum bonum ponat, consentaneum sit dicere.</li>\r\n	<li>Quod idem cum vestri faciant, non satis magnam tribuunt inventoribus gratiam.</li>\r\n	<li>Quamquam id quidem licebit iis existimare, qui legerint.</li>\r\n</ul>\r\n\r\n\r\n<pre>Ut bacillum aliud est inflexum et incurvatum de industria,\r\naliud ita natum, sic ferarum natura non est illa quidem\r\ndepravata mala disciplina, sed natura sua.\r\n\r\nObscura, inquit, quaedam esse confiteor, nec tamen ab illis\r\nita dicuntur de industria, sed inest in rebus ipsis\r\nobscuritas.\r\n</pre>\r\n\r\n\r\n<ol>\r\n	<li>Summum a vobis bonum voluptas dicitur.</li>\r\n	<li>Negat enim summo bono afferre incrementum diem.</li>\r\n	<li>Eiuro, inquit adridens, iniquum, hac quidem de re;</li>\r\n	<li>Quamquam te quidem video minime esse deterritum.</li>\r\n</ol>\r\n\r\n\r\n', 3, 1, 12, 2, 1, 0, '2021-04-28 00:39:50', '2021-04-28 00:39:50', '2021-05-28 00:39:50', 3, NULL),
 (10, 'Scripsit enim et multise21', '1233.23', 2, 2, '02b2a0800bea5eba02468920ffcf7a9f1619563071.jpg|9decbde481a08e51b65f689e2f5f48c71619563071.jpg|953fe3ff827831a0bf7c0457e8fa09861619563071.jpg|kupatilo 11619563071.jpg', '', '<h1>Vitiosum est enim in dividendo partem in genere numerare.</h1>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est, ut dicis, inquit; <a href=\"http://loripsum.net/\" target=\"_blank\">Ego vero isti, inquam, permitto.</a> <i>Putabam equidem satis, inquit, me dixisse.</i> Sed in rebus apertissimis nimium longi sumus. </p>\r\n\r\n<ul>\r\n	<li>Hi curatione adhibita levantur in dies, valet alter plus cotidie, alter videt.</li>\r\n	<li>Omnes enim iucundum motum, quo sensus hilaretur.</li>\r\n	<li>Hoc est dicere: Non reprehenderem asotos, si non essent asoti.</li>\r\n</ul>\r\n\r\n\r\n<ol>\r\n	<li>Quod si ita est, sequitur id ipsum, quod te velle video, omnes semper beatos esse sapientes.</li>\r\n	<li>Sed haec nihil sane ad rem;</li>\r\n	<li>At quanta conantur! Mundum hunc omnem oppidum esse nostrum! Incendi igitur eos, qui audiunt, vides.</li>\r\n	<li>Hoc loco discipulos quaerere videtur, ut, qui asoti esse velint, philosophi ante fiant.</li>\r\n	<li>Indicant pueri, in quibus ut in speculis natura cernitur.</li>\r\n	<li>Si alia sentit, inquam, alia loquitur, numquam intellegam quid sentiat;</li>\r\n</ol>\r\n\r\n\r\n<pre>Haec ego non possum dicere non esse hominis quamvis et belli\r\net humani, sapientis vero nullo modo, physici praesertim,\r\nquem se ille esse vult, putare ullum esse cuiusquam diem\r\nnatalem.\r\n\r\nLicet hic rursus ea commemores, quae optimis verbis ab\r\nEpicuro de laude amicitiae dicta sunt.\r\n</pre>\r\n\r\n\r\n<p>Duo Reges: constructio interrete. Eademne, quae restincta siti? <b>Restatis igitur vos;</b> Facillimum id quidem est, inquam. Et quod est munus, quod opus sapientiae? <a href=\"http://loripsum.net/\" target=\"_blank\">Prioris generis est docilitas, memoria;</a> </p>\r\n\r\n<blockquote cite=\"http://loripsum.net\">\r\n	Scripsit enim et multis saepe verbis et breviter arteque in eo libro, quem modo nominavi, mortem nihil ad nos pertinere.\r\n</blockquote>\r\n\r\n\r\n<h2>Ut id aliis narrare gestiant?</h2>\r\n\r\n<p>Non potes, nisi retexueris illa. Id mihi magnum videtur. Id est enim, de quo quaerimus. Aperiendum est igitur, quid sit voluptas; <a href=\"http://loripsum.net/\" target=\"_blank\">Nam Pyrrho, Aristo, Erillus iam diu abiecti.</a> </p>\r\n\r\n<dl>\r\n	<dt><dfn>Perge porro;</dfn></dt>\r\n	<dd>Hoc ipsum elegantius poni meliusque potuit.</dd>\r\n	<dt><dfn>At coluit ipse amicitias.</dfn></dt>\r\n	<dd>Idem iste, inquam, de voluptate quid sentit?</dd>\r\n	<dt><dfn>Ut pulsi recurrant?</dfn></dt>\r\n	<dd>Cum ageremus, inquit, vitae beatum et eundem supremum diem, scribebamus haec.</dd>\r\n</dl>\r\n\r\n\r\n', 2, 4, 111, 2, 3, 1, '2021-04-28 00:37:51', '2021-04-28 00:37:51', '2021-05-28 00:37:51', 3, NULL),
@@ -265,6 +265,27 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `state`, `city`, `postal_code`, `address`, `email`, `phone_number`, `password`, `banned`, `active`, `token`, `is_admin`, `created_at`) VALUES
 (3, 'Milan', 'Janković', 'Serbia', 'Niš', '18000', 'Branka Miljkovića 8', 'milanj31@gmail.com', '0629659932', '$2y$10$4f3Y8OBRsvkpQfOualKKSeUNKnm4W6ENvX3P5tPj6YQz4Ox3rOVDG', 0, 1, NULL, 0, '2021-04-06 22:56:11');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `ad_id` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `user_id`, `ad_id`) VALUES
+(2, 3, 10),
+(3, 3, 13),
+(5, 3, 16);
+
 --
 -- Indexes for dumped tables
 --
@@ -329,6 +350,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -336,7 +363,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -385,6 +412,12 @@ ALTER TABLE `subcategories`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
