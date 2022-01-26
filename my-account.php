@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php require_once 'include/db.inc.php' ?>
 <?php require_once 'include/class_autoloader.inc.php' ?>
 <?php require_once 'include/config.inc.php' ?>
@@ -128,7 +129,146 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     padding: 0.85rem 1.5rem;
     border-color: rgba(24,28,33,0.03) !important;
 }
+.cart-wrap {
+    padding: 40px 0;
+    font-family: 'Open Sans', sans-serif;
+}
+.main-heading {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+.table-wishlist table {
+    width: 100%;
+}
+.table-wishlist thead {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 5px;
+}
+.table-wishlist thead tr th {
+    padding: 8px 0 18px;
+    color: #484848;
+    font-size: 15px;
+    font-weight: 400;
+}
+.table-wishlist tr td {
+    padding: 25px 0;
+    vertical-align: middle;
+}
+.table-wishlist tr td .img-product {
+    width: 72px;
+    float: left;
+    margin-left: 8px;
+    margin-right: 31px;
+    line-height: 63px;
+}
+.table-wishlist tr td .img-product img {
+    width: 100%;
+}
+.table-wishlist tr td .name-product {
+    font-size: 15px;
+    color: #484848;
+    padding-top: 8px;
+    line-height: 24px;
+    width: 50%;
+}
+.table-wishlist tr td.price {
+    font-weight: 600;
+}
+.table-wishlist tr td .quanlity {
+    position: relative;
+}
 
+.total {
+    font-size: 24px;
+    font-weight: 600;
+    color: #8660e9;
+}
+.display-flex {
+    display: flex;
+}
+.align-center {
+    align-items: center;
+}
+.round-black-btn {
+    border-radius: 25px;
+    background: #212529;
+    color: #fff;
+    padding: 5px 20px;
+    display: inline-block;
+    border: solid 2px #212529; 
+    transition: all 0.5s ease-in-out 0s;
+    cursor: pointer;
+    font-size: 14px;
+}
+.round-black-btn:hover,
+.round-black-btn:focus {
+    background: transparent;
+    color: #212529;
+    text-decoration: none;
+}
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+.mt-30 {
+    margin-top: 30px !important;
+}
+.d-block {
+    display: block;
+}
+.custom-form label {
+    font-size: 14px;
+    line-height: 14px;
+}
+.pretty.p-default {
+    margin-bottom: 15px;
+}
+.pretty input:checked~.state.p-primary-o label:before, 
+.pretty.p-toggle .state.p-primary-o label:before {
+    border-color: #8660e9;
+}
+.pretty.p-default:not(.p-fill) input:checked~.state.p-primary-o label:after {
+    background-color: #8660e9 !important;
+}
+.main-heading.border-b {
+    border-bottom: solid 1px #ededed;
+    padding-bottom: 15px;
+    margin-bottom: 20px !important;
+}
+.custom-form .pretty .state label {
+    padding-left: 6px;
+}
+.custom-form .pretty .state label:before {
+    top: 1px;
+}
+.custom-form .pretty .state label:after {
+    top: 1px;
+}
+.custom-form .form-control {
+    font-size: 14px;
+    height: 38px;
+}
+.custom-form .form-control:focus {
+    box-shadow: none;
+}
+.custom-form textarea.form-control {
+    height: auto;
+}
+.mt-40 {
+    margin-top: 40px !important; 
+}
+.in-stock-box {
+    background: #ff0000;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 4px 15px;
+    display: inline-block;  
+    color: #fff;
+}
+.trash-icon {
+    font-size: 20px;
+    color: #212529;
+}
 
 </style>
 
@@ -167,7 +307,8 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
 
 
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>            
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#my-wishlist">My wishlist</a>
           </div>
         </div>
         <div class="col-md-9">
@@ -365,6 +506,118 @@ $msg -> display();
 
               </div>
             </div>
+
+                        <div class="tab-pane fade" id="my-wishlist">
+              <div class="card-body pb-2">
+
+                <h6 class="mb-4">My wishlist</h6>
+
+               
+    <div class="cart-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                   
+                    <div class="table-wishlist">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th width="85%">Ad title</th>
+                                    
+                                    <th width="15%">Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+
+<?php 
+
+try {
+
+$wishlists = new Ad();
+$my_wishlist = $wishlists -> viewMyWishlist($_SESSION['user_id']);
+if( count($my_wishlist ) > 0 ){
+
+foreach ( $my_wishlist as $list ){
+?>
+
+
+      <tr>
+         <td width="85%">
+                                        <div class="display-flex">
+                                            
+                                            <div class="name-product">
+<?php echo $wishlists -> viewAdInfoByAdID($list['ad_id'])['title'] ?>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td width="15%">
+
+
+<?php 
+if( isset ($_POST['removeFromWishlist'])){
+
+$wishlists -> removeFromWishlist($list['ad_id']);
+
+
+}
+
+
+
+ ?>
+<form action="my-account.php" method="post">
+    <button class="round-black-btn small-btn" type="submit" name="removeFromWishlist" value="<?php echo $list['ad_id'] ?>">Remove</button>
+
+</form>
+                                        
+
+
+
+                                       
+
+
+
+
+                                    </td>
+                                    
+                                </tr>
+<?php
+
+}// endforeach
+} else {
+    echo 'You dont have any ad in your wishlist.';
+}
+
+
+
+} catch ( PDOException $e ){
+    echo $e -> getMessage();
+}
+
+
+ ?>
+
+
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+              </div>
+             
+             
+            </div>
           </div>
         </div>
       </div>
@@ -425,3 +678,4 @@ $msg -> display();
 </body>
 
 </html>
+<?php ob_flush_end(); ?>

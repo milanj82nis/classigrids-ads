@@ -4,6 +4,29 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
+public function viewAdInfoByAdID($ad_id ){
+
+$sql = 'select * from ads where id = ? limit 1 ';
+
+$query = $this -> connect()-> prepare($sql);
+
+$query -> execute([ $ad_id ]);
+
+$ad = $query -> fetch();
+
+return $ad;
+
+}// viewAdInfoByAdID
+
+public function viewMyWishlist( $user_id ){
+
+$sql = 'select * from wishlist where user_id = ? order by id desc';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute([ $user_id]);
+$ads = $query -> fetchAll();
+return $ads;
+}// viewMyWishlist
+
 
 public function checkIsAdInWishlist($ad_id){
 
@@ -23,7 +46,7 @@ if( count($ads ) > 0 ){
 
 public function addToWishlist($ad_id){
 
-$sql = 'insert into wishlist ( ad_id , user_id ) values ( ? , ? )';
+$sql = 'insert into wishlist ( ad_id , user_id ) values ( ? , ? )  ';
 $query = $this -> connect() -> prepare($sql);
 $query -> execute([ $ad_id , $_SESSION['user_id']]);
 
@@ -32,15 +55,13 @@ $query -> execute([ $ad_id , $_SESSION['user_id']]);
 
 public function removeFromWishlist($ad_id){
 
-$sql = 'delete from wishlist where ad_id = ? and user_id = ? ';
+$sql = 'delete from wishlist where ad_id = ? and user_id = ? limit 1 ' ;
 $query = $this -> connect() -> prepare($sql);
 $query -> execute([ $ad_id , $_SESSION['user_id']]);
-
+header('Location:' . $_SERVER['HTTP_REFERER']);
+die();
 
 }// removeFromWishlist
-
-
-
 
 
 public function getSubCategoryDetails($id){

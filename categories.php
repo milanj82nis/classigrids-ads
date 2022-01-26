@@ -364,8 +364,7 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                            <div class="add">  </div>
                         </div>
                     </div>
                 </div>
@@ -444,8 +443,7 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                            <div class="add">  </div>
                         </div>
                     </div>
                 </div>
@@ -520,8 +518,7 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                            <div class="add">  </div>
                         </div>
                     </div>
                 </div>
@@ -595,8 +592,7 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                            <div class="add"></div>
                         </div>
                     </div>
                 </div>
@@ -669,8 +665,7 @@ if( $ad['free_delivery'] == 1 ){
                             </span>
                         </div>
                         <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <a  href="view-ad.php?id=<?php echo $ad['id']; ?>" class="btn btn-primary text-uppercase">View Ad</a>
-                            <div class="add"> <span class="product_fav">
-                                <i class="fas fa-heart" aria-hidden="true"></i></span> <span class="product_fav"><i class="fas fa-user"></i></span> </div>
+                            <div class="add">  </div>
                         </div>
                     </div>
                 </div>

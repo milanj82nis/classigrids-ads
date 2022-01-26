@@ -78,7 +78,10 @@ if( $ad['free_delivery'] == 1 ){
                                         <li><a href="javascript:void(0)">(35)</a></li>
                                     </ul>
                                     <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> New York, US</a></li>
+                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> 
+<?php echo $ads -> getConditionDetails($ad['condition_id'])['title']; ?>
+
+                                        </a></li>
                                         <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> 
 
 
@@ -89,9 +92,9 @@ if( $ad['free_delivery'] == 1 ){
                                     </ul>
                                 </div>
                                 <div class="bottom-content">
-                                    <p class="price">Start From: <span><?php echo $ad['price'] ?>
-                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['title']; ?></span></p>
-                                    <a href="javascript:void(0)" class="like"><i class="lni lni-heart"></i></a>
+                                    <p class="price">Price : <span><?php echo $ad['price'] ?>
+                                <?php echo $ads -> getCurrencyDetails($ad['currency_id'])['slug']; ?></span></p>
+                                   
                                 </div>
                             </div>
                         </div>
