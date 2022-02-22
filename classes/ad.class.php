@@ -536,6 +536,8 @@ public function getSendingDetails($sending_id){
 	$query = $this -> connect() -> prepare($sql);
 	$query -> execute([$sending_id]);
 	$sending = $query -> fetch();
+	
+	
 	return $sending;
 }//getSendingDetails
 
