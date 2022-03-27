@@ -738,6 +738,20 @@ if( $ads -> checkIsAdInWishlist($ad_id )){
 }
 
 
+if( isset($_POST['buyNow'])){
+
+$ad = new Ad();
+$ad_id = (int)$_GET['id'];
+if( !$ad_id ){
+    header('Location:index.php');
+    die();
+}
+$ad -> buyNow($ad_id);
+
+}// $_POST['buyNow']
+
+
+
 
 
 } catch ( PDOException $e ) {

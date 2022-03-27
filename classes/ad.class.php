@@ -4,6 +4,34 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
+public function buyNow($ad_id ){
+
+$user_id = (int)$_SESSION['user_id'];
+$created_at = date( 'Y-m-d H:i:s');
+$updated_at = date( 'Y-m-d H:i:s');
+
+$sql = 'insert into orders ( ad_id , user_id , created_at , updated_at ) values (? , ? , ? , ?)';
+$query = $this -> connect() -> prepare($sql ) ;
+$query -> execute( [ $ad_id , $user_id , $created_at , $updated_at ]);
+if( !$query ){
+
+	echo 'Error.Please try again later.';
+} else {
+
+	$sql = 'update ads set active = ? where id = ? limit 1 ';
+	$query = $this -> connect() -> prepare($sql);
+	$query -> execute([ 0 , $ad_id ]);
+	header('Location:my-orders.php');
+	die();
+
+
+}
+
+
+
+}// buyNow
+
+
 public function viewAdInfoByAdID($ad_id ){
 
 $sql = 'select * from ads where id = ? limit 1 ';
