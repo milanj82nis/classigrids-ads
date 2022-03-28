@@ -127,15 +127,17 @@ $perPage = isset($_GET['per-page'])&& $_GET['per-page'] <= 12 ? (int)$_GET['per-
 
 $start = ( $page > 1 ) ? ($page * $perPage ) - $perPage : 0 ;
 
-$sql = 'select * from ads order by title desc LIMIT :start , :perPage';
+$sql = 'select * from ads where active = :active order by title desc LIMIT :start , :perPage';
 $query = $this -> connect() -> prepare($sql);
+$query -> bindValue( ':active' , 1 , PDO::PARAM_INT);
 $query -> bindParam( ':start' , $start , PDO::PARAM_INT);
 $query -> bindParam( ':perPage' , $perPage , PDO::PARAM_INT);
 $query -> execute();
 $ads = $query -> fetchAll(); 
 
-$sql = 'select * from ads ';
-$query = $this -> connect() -> query($sql);
+$sql = 'select * from ads where active = ? ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute( [ 1 ]);
 $ads_count = $query ->  fetchAll();
 $allAds = count($ads_count);
 $pages = ceil( $allAds / $perPage);
@@ -150,9 +152,9 @@ return array('pages' => $pages , 'ads' => $ads , 'per-page' => $perPage );
 
 public function getAdsCountBySubCategory($sub_category_id){
 
-	$sql = 'select * from ads where sub_category_id = ? ';
+	$sql = 'select * from ads where sub_category_id = ? and active = ? ';
 	$query = $this -> connect() -> prepare($sql);
-	$query -> execute([ $sub_category_id ]);
+	$query -> execute([ $sub_category_id  , 1 ]);
 	$ads = count($query -> fetchAll());
 	return $ads;
 
@@ -160,27 +162,27 @@ public function getAdsCountBySubCategory($sub_category_id){
 
 public function getAdsCountByCondition($condition_id){
 
-	$sql = 'select * from ads where condition_id = ? ';
+	$sql = 'select * from ads where condition_id = ? and active = ? ';
 	$query = $this -> connect() -> prepare($sql);
-	$query -> execute([ $condition_id ]);
+	$query -> execute([ $condition_id  , 1 ]);
 	$ads = count($query -> fetchAll());
 	return $ads;
 
 }// getAdsCountBySubCategory
 public function getAdsByPaymentMethod($payment_id){
 
-	$sql = 'select * from ads where payment_id = ? ';
+	$sql = 'select * from ads where payment_id = ? and active = ? ';
 	$query = $this -> connect() -> prepare($sql);
-	$query -> execute([ $payment_id ]);
+	$query -> execute([ $payment_id , 1  ]);
 	$ads = count($query -> fetchAll());
 	return $ads;
 
 }// getAdsCountBySubCategory
 public function getAdsBySendingMethod($sending_id){
 
-	$sql = 'select * from ads where sending_id = ? ';
+	$sql = 'select * from ads where sending_id = ? and active = ? ';
 	$query = $this -> connect() -> prepare($sql);
-	$query -> execute([ $sending_id ]);
+	$query -> execute([ $sending_id  , 1 ]);
 	$ads = count($query -> fetchAll());
 	return $ads;
 
