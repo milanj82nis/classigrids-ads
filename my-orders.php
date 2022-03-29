@@ -3,12 +3,21 @@
 <?php require_once 'include/config.inc.php' ?>
 <?php require_once 'include/timeago.class.php' ?>
 <?php $timeago = new get_timeago; ?>
+<?php 
+$user = new User();
+if ( !$user -> checkIsUserLoggedIn()){
+
+    header('Location:login.php');
+    die();
+}
+
+ ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
    <?php require_once 'partials/__head.php' ?>
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -29,8 +38,76 @@
 
 
 <div class="container">
-    <br><br><br><br>
+    <br><br>
 <h1>My orders</h1>
+
+<br><br><br>
+
+
+
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Created at</th>
+                <th colspan="1">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+<?php 
+
+try {
+$ad = new Ad();
+$orders = $ad -> getAllUserOrders();
+
+foreach ( $orders as $order ){
+
+?>
+
+  <tr>
+                <td><?php echo $order['id'] ?></td>
+                <td><?php echo $ad -> viewAdInfoByAdID($order['ad_id'])['title']  ?></td>
+                <td><?php echo $order['created_at'] ;?></td>
+                <td>
+
+<form action="">
+    
+    <button class="btn btn-primary">View</button>
+    <button class="btn btn-danger">Delete</button>
+</form>
+
+                </td>
+                
+            </tr>
+
+<?php
+
+}
+
+} catch ( PDOException $e ){
+    echo $e -> getMessage();
+}
+
+ ?>
+
+
+
+          
+            
+        
+         
+        </tbody>
+        <tfoot>
+                       <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Created at</th>
+                <th colspan="1">Action</th>
+            </tr>
+        </tfoot>
+    </table>
 <br><br><br><br><br><br><br><br><br>
 </div>
 
@@ -82,6 +159,13 @@
             }
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 </body>
 
 </html>

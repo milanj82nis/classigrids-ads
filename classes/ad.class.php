@@ -4,6 +4,21 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
+
+
+public function getAllUserOrders( ){
+
+$user_id = (int)$_SESSION['user_id'];
+
+$sql = 'select * from orders where user_id = ? order by created_at desc ';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute( [ $user_id ]);
+$rows = $query -> fetchAll();
+return $rows;
+
+}
+
+
 public function buyNow($ad_id ){
 
 $user_id = (int)$_SESSION['user_id'];

@@ -308,7 +308,10 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>            
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#my-wishlist">My wishlist</a>
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#my-wishlist">My wishlist</a>             
+            <a class="list-group-item list-group-item-action"  href="my-orders.php">My orders</a>            
+           
+
           </div>
         </div>
         <div class="col-md-9">
