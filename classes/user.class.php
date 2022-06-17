@@ -4,6 +4,19 @@ require_once 'include/FlashMessages.php';
 
 class User extends DbConnect{
 
+
+public function userLogout(){
+
+if( isset($_SESSION['logged_in'])){
+	session_destroy();
+	header('Location:index.php');
+	die();
+}
+
+}// userLogout
+
+
+
 private function checkIsPasswordResetFormEmpty($password , $password_confirmation ){
 if(!empty($password ) && !empty($password_confirmation)){
 		return true;

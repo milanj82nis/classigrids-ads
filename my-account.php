@@ -309,7 +309,29 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>            
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#my-wishlist">My wishlist</a>             
-            <a class="list-group-item list-group-item-action"  href="my-orders.php">My orders</a>            
+            <a class="list-group-item list-group-item-action"  href="my-orders.php">My orders</a>     
+
+            <?php 
+try {
+    if( isset($_POST['userLogout'])){
+$user = new User();
+$user -> userLogout();
+
+
+    }// main isset
+
+
+
+} catch (PDOException $e) {
+
+    echo $e -> getMessage();
+}
+
+             ?>
+            <form action="" method="POST">
+                
+                <button type="submit" name="userLogout" class="list-group-item list-group-item-action">Logout</button>
+            </form>       
            
 
           </div>
