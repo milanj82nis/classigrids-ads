@@ -5,6 +5,15 @@ require_once 'include/FlashMessages.php';
 class Ad extends DbConnect {
 
 
+public function getAllLocationsFromAdTable(){
+	
+	$sql = 'select * from ads group by location asc';
+	$query = $this -> connect() -> query($sql);
+	return $locations = $query -> fetchAll();
+
+}// getAllLocationsFromAdTable
+
+
 
 public function getAllUserOrders( ){
 

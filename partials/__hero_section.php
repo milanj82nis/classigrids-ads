@@ -13,6 +13,8 @@
                         <!-- End Search Form -->
                         <!-- Start Search Form -->
                         <div class="search-form wow fadeInUp" data-wow-delay=".7s">
+<form action="search-result.php" method="GET">
+
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-12 p-0">
                                     <div class="search-input">
@@ -23,18 +25,22 @@
                                 <div class="col-lg-3 col-md-3 col-12 p-0">
                                     <div class="search-input">
                                         <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
-                                        <select name="category" id="category">
+                                        <select name="sub_category_id" id="category">
                                             <option value="none" selected disabled>Categories</option>
-                                            <option value="none">Vehicle</option>
-                                            <option value="none">Electronics</option>
-                                            <option value="none">Mobiles</option>
-                                            <option value="none">Furniture</option>
-                                            <option value="none">Fashion</option>
-                                            <option value="none">Jobs</option>
-                                            <option value="none">Real Estate</option>
-                                            <option value="none">Animals</option>
-                                            <option value="none">Education</option>
-                                            <option value="none">Matrimony</option>
+ <?php 
+ $categories = new Ad();
+ foreach ( $categories -> getAllSubCategories() as $subCategory ){
+?>
+
+ <option value="<?php echo $subCategory['id']; ?>"><?php echo $subCategory['title']; ?></option>
+
+
+<?php
+ }
+
+
+
+  ?>                                           
                                         </select>
                                     </div>
                                 </div>
@@ -44,20 +50,31 @@
                                         <select name="location" id="location">
                                             <option value="none" selected disabled>Locations</option>
                                             <option value="none">New York</option>
-                                            <option value="none">California</option>
-                                            <option value="none">Washington</option>
-                                            <option value="none">Birmingham</option>
-                                            <option value="none">Chicago</option>
-                                            <option value="none">Phoenix</option>
+
+<?php 
+
+$locations = new Ad();
+foreach( $locations -> getAllLocationsFromAdTable() as $location){
+?>
+    <option value="<?php echo $location['location']; ?>"><?php echo $location['location']; ?></option>
+
+    <?php
+}
+
+
+ ?>
+
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-12 p-0">
                                     <div class="search-btn button">
-                                        <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
+                                        <button class="btn" type="submit" name="searchAds"><i class="lni lni-search-alt"></i> Search</button>
                                     </div>
                                 </div>
                             </div>
+</form>
                         </div>
                         <!-- End Search Form -->
                     </div>
