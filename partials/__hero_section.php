@@ -26,7 +26,7 @@
                                     <div class="search-input">
                                         <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
                                         <select name="sub_category_id" id="category">
-                                            <option value="none" selected disabled>Categories</option>
+                                          
  <?php 
  $categories = new Ad();
  foreach ( $categories -> getAllSubCategories() as $subCategory ){
@@ -48,8 +48,7 @@
                                     <div class="search-input">
                                         <label for="location"><i class="lni lni-map-marker theme-color"></i></label>
                                         <select name="location" id="location">
-                                            <option value="none" selected disabled>Locations</option>
-                                            <option value="none">New York</option>
+                                            
 
 <?php 
 

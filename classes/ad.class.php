@@ -4,6 +4,20 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
+public function searchAds($keyword , $sub_category_id , $location ){
+
+$sql = 'select * from ads where title like :keyword and sub_category_id like :sub_category_id and location like :location ';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindValue( ':keyword' , '%' . $keyword .'%',);
+$query -> bindValue( ':sub_category_id' ,  $sub_category_id ,);
+$query -> bindValue( ':location' ,  $location ,);
+$query -> execute();
+return $results = $query -> fetchAll();
+
+}
+
+
+
 
 public function getAllLocationsFromAdTable(){
 	
