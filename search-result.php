@@ -56,10 +56,10 @@ if( !$keyword ){
 }
 
 
-if( count($ads -> searchAds( $keyword , $sub_category_id , $location )) > 0 ){
+if( count($ads -> searchAds( $keyword , $sub_category_id , $location )['ads']) > 0 ){
 
 
-foreach($ads -> searchAds( $keyword , $sub_category_id , $location ) as $ad){
+foreach($ads -> searchAds( $keyword , $sub_category_id , $location )['ads'] as $ad){
 $user_id = $ad['user_id'];
 $sub_category_id = $ad['sub_category_id'];
 $first_name = $ads -> getUserDetails($user_id)['first_name'];
@@ -145,6 +145,40 @@ if( $ad['free_delivery'] == 1 ){
 
 }// endforeach
 
+
+if( count($ads -> searchAds( $keyword , $sub_category_id , $location )['ads']) > 0 ){
+    $pages = $ads -> searchAds( $keyword , $sub_category_id , $location )['pages'];
+?>
+<nav>
+    <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success">
+<?php 
+
+for( $x = 1 ; $x <= $pages; $x++){
+
+    $perPage = $ads -> searchAds( $keyword , $sub_category_id , $location )['per-page'];
+
+?>
+<li class="page-item">
+    <a class="page-link" data-abc="true" href="search-result.php?keyword=<?php echo $keyword; ?>&sub_category_id=<?php echo $sub_category_id; ?>&location=<?php echo $location; ?>&page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"><?php echo $x ?></a>
+</li>
+
+
+<?php
+}// end for
+
+
+
+ ?>        
+
+
+    </ul>
+</nav>
+
+
+<?php
+
+
+}
 
 
 

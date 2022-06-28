@@ -4,15 +4,41 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
-public function searchAds($keyword , $sub_category_id , $location ){
+public function searchAds( $keyword , $sub_category_id , $location ){
 
-$sql = 'select * from ads where title like :keyword and sub_category_id like :sub_category_id and location like :location ';
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1 ; 
+$perPage = isset($_GET['per-page'])&& $_GET['per-page'] <= 12 ? (int)$_GET['per-page'] : 12 ;
+
+$start = ( $page > 1 ) ? ($page * $perPage ) - $perPage : 0 ;
+
+$sql = 'select * from ads where title like :keyword and sub_category_id like :sub_category_id and location like :location and active = :active  LIMIT :start , :perPage ';
 $query = $this -> connect() -> prepare($sql);
 $query -> bindValue( ':keyword' , '%' . $keyword .'%',);
 $query -> bindValue( ':sub_category_id' ,  $sub_category_id ,);
 $query -> bindValue( ':location' ,  $location ,);
+$query -> bindValue( ':active' , 1 , PDO::PARAM_INT);
+$query -> bindParam( ':start' , $start , PDO::PARAM_INT);
+$query -> bindParam( ':perPage' , $perPage , PDO::PARAM_INT);
 $query -> execute();
-return $results = $query -> fetchAll();
+$ads = $query -> fetchAll();
+
+
+
+$sql = 'select * from ads where title like :keyword and sub_category_id like :sub_category_id and location like :location and active = :active  ';
+$query = $this -> connect() -> prepare($sql);
+$query -> bindValue( ':keyword' , '%' . $keyword .'%',);
+$query -> bindValue( ':sub_category_id' ,  $sub_category_id ,);
+$query -> bindValue( ':location' ,  $location ,);
+$query -> bindValue( ':active' , 1 , PDO::PARAM_INT);
+
+$query -> execute( );
+$ads_count = $query ->  fetchAll();
+$allAds = count($ads_count);
+$pages = ceil( $allAds / $perPage);
+
+return array('pages' => $pages , 'ads' => $ads , 'per-page' => $perPage );
+
+
 
 }
 
