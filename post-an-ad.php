@@ -168,6 +168,7 @@ if( isset($_POST['postAnAd'])){
 
 $ad = new Ad();
 $title = $_POST['title'];
+$location = $_POST['location'];
 $price = $_POST['price'];
 $price_type_id = $_POST['price_type_id'];
 $currency_id = $_POST['currency_id'];
@@ -182,7 +183,7 @@ $sending_id = $_POST['sending_id'];
 $free_delivery = isset($_POST['free_delivery']) ? 1 : 0 ;
 
 $ad -> postAnAd($title , $price , $price_type_id , $currency_id , $payment_id , $images , 
-$youtube_link , $description , $condition_id , $sub_category_id , $amount , $sending_id , $free_delivery );
+$youtube_link , $description , $condition_id , $sub_category_id , $amount , $sending_id , $free_delivery , $location);
 
 
 
@@ -201,6 +202,13 @@ $youtube_link , $description , $condition_id , $sub_category_id , $amount , $sen
            
         <div class="col-md-12 mt-md-0 mt-3"> <label>Title</label> 
                 <input type="text" class="form-control" name="title"> 
+        </div>
+
+        </div>
+                <div class="row">
+           
+        <div class="col-md-12 mt-md-0 mt-3"> <label>Location</label> 
+                <input type="text" class="form-control" name="location"> 
         </div>
 
         </div>

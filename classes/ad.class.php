@@ -253,10 +253,10 @@ public function getAdsBySendingMethod($sending_id){
 }// getAdsCountBySubCategory
 
 
-private function checkIsAdsFormEmpty($title , $price , $price_type_id , $currency_id , $payment_id , $images  , $description , $condition_id , $sub_category_id , $amount , $sending_id  ){
+private function checkIsAdsFormEmpty($title , $price , $price_type_id , $currency_id , $payment_id , $images  , $description , $condition_id , $sub_category_id , $amount , $sending_id  , $location ){
 
 
-if(!empty($title) && !empty($price) && !empty($price_type_id) && !empty($currency_id) && !empty($payment_id) && !empty($images) && !empty($description) && !empty($condition_id) && !empty($sub_category_id) && !empty($amount) &&  !empty($sending_id)  ){
+if(!empty($title) && !empty($price) && !empty($price_type_id) && !empty($currency_id) && !empty($payment_id) && !empty($images) && !empty($description) && !empty($condition_id) && !empty($sub_category_id) && !empty($amount) &&  !empty($sending_id)  &&  !empty($location)  ){
 
 	return true;
 } else {
@@ -267,10 +267,10 @@ return false;
 
 
 public function postAnAd($title , $price , $price_type_id , $currency_id , $payment_id , $images , 
-$youtube_link , $description , $condition_id , $sub_category_id , $amount , $sending_id , $free_delivery ){
+$youtube_link , $description , $condition_id , $sub_category_id , $amount , $sending_id , $free_delivery , $location ){
 
 
-if( $this -> checkIsAdsFormEmpty($title , $price , $price_type_id , $currency_id , $payment_id , $images  , $description , $condition_id , $sub_category_id , $amount , $sending_id )){
+if( $this -> checkIsAdsFormEmpty($title , $price , $price_type_id , $currency_id , $payment_id , $images  , $description , $condition_id , $sub_category_id , $amount , $sending_id , $location  )){
 
 
 
@@ -352,12 +352,12 @@ $created_at = date('Y-m-d H:i:s');
 $updated_at = date('Y-m-d H:i:s');
 $expires_at = date('Y-m-d H:i:s' , strtotime($created_at . ' + 30 days'));
 $user_id = (int)$_SESSION['user_id'];
-$sql = ' insert into  ads ( title , price , currency_id , price_type_id , payment_id , images , youtube_link , description , condition_id , sending_id , sub_category_id , amount , free_delivery , created_at , updated_at , expires_at , user_id  ) 
-values ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )';
+$sql = ' insert into  ads ( title , price , currency_id , price_type_id , payment_id , images , youtube_link , description , condition_id , sending_id , sub_category_id , amount , free_delivery , created_at , updated_at , expires_at , user_id , location ) 
+values ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)';
 
 
 $query = $this -> connect() -> prepare($sql);
-$query -> execute([ $title , $price , $currency_id , $price_type_id , $payment_id , $images , $youtube_link , $description , $condition_id , $sending_id , $sub_category_id , $amount , $free_delivery , $created_at , $updated_at , $expires_at , $user_id ]);
+$query -> execute([ $title , $price , $currency_id , $price_type_id , $payment_id , $images , $youtube_link , $description , $condition_id , $sending_id , $sub_category_id , $amount , $free_delivery , $created_at , $updated_at , $expires_at , $user_id , $location]);
 
 
 
