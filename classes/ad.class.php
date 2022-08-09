@@ -4,6 +4,23 @@ require_once 'include/FlashMessages.php';
 
 class Ad extends DbConnect {
 
+
+
+public function myAds(){
+
+$user_id = (int)$_SESSION['user_id'];
+$sql = 'select * from ads where user_id = ? order by created_at desc';
+$query = $this -> connect() -> prepare($sql);
+$query -> execute( [ $user_id ]);
+
+$my_ads = $query -> fetchAll();
+return $my_ads;
+
+}// my ads
+
+
+
+
 public function searchAds( $keyword , $sub_category_id , $location ){
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1 ; 
