@@ -85,15 +85,15 @@ return $rows;
 }
 
 
-public function buyNow($ad_id ){
+public function buyNow($ad_id , $seller_id ){
 
-$user_id = (int)$_SESSION['user_id'];
+$buyer_id = (int)$_SESSION['user_id'];
 $created_at = date( 'Y-m-d H:i:s');
 $updated_at = date( 'Y-m-d H:i:s');
 
-$sql = 'insert into orders ( ad_id , user_id , created_at , updated_at ) values (? , ? , ? , ?)';
+$sql = 'insert into orders ( ad_id , user_id , created_at , updated_at  , buyer_id ) values (? , ? , ? , ? , ? )';
 $query = $this -> connect() -> prepare($sql ) ;
-$query -> execute( [ $ad_id , $user_id , $created_at , $updated_at ]);
+$query -> execute( [ $ad_id , $seller_id , $created_at , $updated_at  , $buyer_id ]);
 if( !$query ){
 
 	echo 'Error.Please try again later.';

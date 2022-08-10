@@ -742,11 +742,12 @@ if( isset($_POST['buyNow'])){
 
 $ad = new Ad();
 $ad_id = (int)$_GET['id'];
+$seller_id = $ads -> viewAd($ad_id)['user_id'];
 if( !$ad_id ){
     header('Location:index.php');
     die();
 }
-$ad -> buyNow($ad_id);
+$ad -> buyNow($ad_id , $seller_id );
 
 }// $_POST['buyNow']
 
